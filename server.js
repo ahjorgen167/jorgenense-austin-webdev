@@ -9,13 +9,6 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-/*
- //using get by default location
- app.get('/', function(req, res){
- //console.log(req);
- res.send('hello world again from REST API!');
- });
- */
 
 //callback function
 app.get('/todo/:title', handleTodo);
@@ -32,7 +25,7 @@ function handleTodo(req, res)
 }
 
 
-app.use(express.static(__dirname+'/todo_example'));
+app.use(express.static(__dirname+'/public'));
 
 var ipaddress = '127.0.0.1';
 var port      = 3000;
