@@ -1,29 +1,25 @@
 {
-  "name": "node-js-sample",
-  "version": "0.2.0",
-  "description": "A sample Node.js app using Express 4",
+  "name": "web-dev",
+  "version": "1.0.0",
+  "description": "cs5610 fall 2016",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
-  },
-  "dependencies": {
-    "express": "^4.13.3"
-  },
-  "engines": {
-    "node": "4.0.0"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-sample"
+    "url": "git+https://github.com/huoming/Fall-CS5610.git"
   },
-  "keywords": [
-    "node",
-    "heroku",
-    "express"
-  ],
-  "author": "Mark Pundsack",
-  "contributors": [
-    "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com)"
-  ],
-  "license": "MIT"
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huoming/Fall-CS5610/issues"
+  },
+  "homepage": "https://github.com/huoming/Fall-CS5610#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.10",
+    "mongoose": "^4.6.0"
+  }
 }
