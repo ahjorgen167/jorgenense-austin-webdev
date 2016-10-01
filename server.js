@@ -1,19 +1,13 @@
-//using express with node js
-var express = require('express');
+var express = require('express')
+var app = express()
 
-//initialize app as an express application
-var app = express();
+app.set('port', (process.env.PORT || 5000))
+app.use(express.static(__dirname + '/public'))
 
-//using body-parser
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+//app.get('/', function(request, response) {
+//  response.send('Hello World!')
+//})
 
-
-app.use(express.static(__dirname+'/public'));
-
-var ipaddress = '127.0.0.1';
-var port      = 3000;
-
-app.listen(port, ipaddress);
-
+app.listen(app.get('port'), function() {
+  console.log("Node app is running at localhost:" + app.get('port'))
+})
