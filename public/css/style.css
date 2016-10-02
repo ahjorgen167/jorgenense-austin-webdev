@@ -8,25 +8,42 @@ input.form-control {
 
 body {
     padding-top: 65px;
-    padding-bottom: 56px;
+    padding-bottom: 65px;
 }
 
-.navbar-default.jga-profile {
-    background-color: #3d96bd;
+a:hover{
+	text-decoration: none;
 }
 
-.navbar-default.jga-profile-b {
-    background-color: red;
-}
-
-.navbar-default.jga-profile .navbar-brand {
-    color: white;
-}
-
-.navbar-default.jga-profile-b .navbar-brand {
-    color: yellow;
-}
 
 .glyphicon {
-    color: white;
+	color: black;
+}
+
+.glyphicon-cog {
+	color: #006dcc;
+}
+
+.glyphicon-user {
+	color: #006dcc;
+}
+
+
+ul {
+  list-style-type: none;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.wrapper .glyphicon {
+  background-color: white;
+  padding: 5px;
+  -moz-border-radius: 0 0 0 6px;
+  border-radius: 0 0 0 6px;
+  color: #006dcc;
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }

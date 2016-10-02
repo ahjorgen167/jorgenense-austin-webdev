@@ -1,0 +1,30 @@
+.navbar .glyphicon {
+	color: white;
+}
+
+.navbar {
+	background-color: #006dcc;
+}
+
+
+.navbar a {
+	color: white;
+}
+
+.navbar a:visited {
+	color: white;
+}
+
+.navbar a:hover {
+	color: white;
+}
+
+
+.navbar a:link {
+	color: white;
+}
+
+
+.navbar-brand {
+	color: white;
+}

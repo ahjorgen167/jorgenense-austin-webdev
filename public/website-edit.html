@@ -4,25 +4,14 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Website List</title>
+    <title>Website Edit</title>
     <link href="css/style.css" rel="stylesheet"/>
     <link href="css/profile.css" rel="stylesheet"/>
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="profile.html"><span class="glyphicon glyphicon-chevron-left"></span>Website List</a>
-            <p class="navbar-text pull-right">
-                <a href="website-new.html"><span class="glyphicon glyphicon-plus"></span></a>
-            </p>
-        </div>
-    </div>
-</nav>
-
-<div class="container nounderline">
-
+<div class="row container-fluid visi">
+    <div class="sidebar-left col-xs-2 hidden-xs">
     <form>
             <div class="form-group">
                 <a href="page-list.html">Address Book App</a>
@@ -51,8 +40,40 @@
             </div>
     </form>
 
+    </div>
+
+<div class="col-xs-12 col-sm-10">
+
+    <form>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="name">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea rows="3" class="form-control" id="description" placeholder="description of the website here"></textarea>
+        </div>
+        <a href="website-list.html" class="btn btn-danger btn-block">
+            Delete
+        </a>
+    </form>
+
 
 </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="website-list.html"><span class="glyphicon glyphicon-chevron-left"></span>Website Edit</a>
+            <p class="navbar-text pull-right">
+                <a href="website-list.html"><span class="glyphicon glyphicon-ok"></span></a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
@@ -65,3 +86,4 @@
 
 </body>
 </html>
+
