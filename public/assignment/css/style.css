@@ -12,20 +12,20 @@ body {
 }
 
 a:hover{
-	text-decoration: none;
+  text-decoration: none;
 }
 
 
 .glyphicon {
-	color: black;
+  color: black;
 }
 
 .glyphicon-cog {
-	color: #006dcc;
+  color: #006dcc;
 }
 
 .glyphicon-user {
-	color: #006dcc;
+  color: #006dcc;
 }
 
 
