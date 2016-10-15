@@ -1,8 +1,13 @@
+
+
+(function (){ 
+    angular.module("WebAppMaker", ["ngRoute"]);
+})();
+/*
 (function() {
     angular
         .module("WhiteBoardApp", [])
         .controller("TextController", TextController_fnc);
-
     function TextController_fnc($scope, $http){
 
         $scope.todos = [];
@@ -37,3 +42,5 @@
         }
     }
 })();
+
+*/
