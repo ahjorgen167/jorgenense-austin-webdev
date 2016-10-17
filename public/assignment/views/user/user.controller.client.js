@@ -19,16 +19,19 @@
         }
     }
 
-    function RegisterController($routeParams, UserService) {
-        var vm = this;
+    function RegisterController($location, UserService) {
+        var vm = this;        
         vm.register = register;
 
         function register(username, password, passwordVerification) {
-            if(password != passwordVerification){
+            if(password !== passwordVerification){
                 vm.error = "Invalid registration - passwords must match";
                 return;
             }
-            var user;
+            var user = {
+                "username": username,
+                "password": password
+            }
             user.username = username;
             user.password = password;
             var userId = UserService.createUser(user);
@@ -38,17 +41,22 @@
                 $location.url("/user/" + userId);
             }
         }
+
     }
 
-    function ProfileController($routeParams, UserService) {
+    function ProfileController($routeParams, $location, UserService) {
         var vm = this;
-
+        vm.update = update;
         vm.userId = $routeParams["uid"];
 
         var user = UserService.findUserById(vm.userId);
-
         if(user != null) {
             vm.user = user;
+        }
+
+        function update(user) {
+            UserService.updateUser(user._id, user);
+            $location.url("/user/" + vm.userId);
         }
     }
 })();

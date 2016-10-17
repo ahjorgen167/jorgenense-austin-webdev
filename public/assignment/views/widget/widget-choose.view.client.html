@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#/widget-list"><span class="glyphicon glyphicon-chevron-left"></span>
+            <a class="navbar-brand" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"><span class="glyphicon glyphicon-chevron-left"></span>
             Choose Widget</a>
         </div>
     </div>
@@ -9,55 +9,61 @@
 
 <div class="container nounderline">
 
+    <div class="alert alert-danger" role="alert">
+        NOTE: The links on this page simply go back a page.  In order to see the edit page, please go back to the widget
+        list view and click on the cog in the upper right corner or go <a href="http://localhost:3000/assignment/index.html#/user/123/website/678/page/321/widget">here</a> to see a populated widget list view.
+    </div>
+
+
     <form>
         <ul>
             <li>
             <div class="form-group">
-                <a href="#/widget-heading">Header</a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">Header</a>
             </div>
             </li>
             <li>
             <div class="form-group">
-                <a href="#/#">Label</a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">Label</a>
             </div>
             </li>
             <li>
             <div class="form-group">
-                <a href="#/#">HTML</a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">HTML</a>
             </div>
             </li>
             <li>
             <div class="form-group">
-                <a href="#/#">Text Input</a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">Text Input</a>
             </div>
             </li>
                         <li>
             <div class="form-group">
-                <a href="#/#">Link</a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">Link</a>
             </div>
                         <li>
             <div class="form-group">
-                <a href="#/#">Button</a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">Button</a>
+            </div>
+            </li>
+            <li>
+            <div class="form-group">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">Image</a>
             </div>
             </li>
                         <li>
             <div class="form-group">
-                <a href="#/widget-image">Image</a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">Youtube</a>
             </div>
             </li>
                         <li>
             <div class="form-group">
-                <a href="#/widget-youtube">Youtube</a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">Data Table</a>
             </div>
             </li>
                         <li>
             <div class="form-group">
-                <a href="#/#">Data Table</a>
-            </div>
-            </li>
-                        <li>
-            <div class="form-group">
-                <a href="#/#">Repeater</a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">Repeater</a>
             </div>
             </li>
         </ul>
@@ -69,7 +75,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
             <p class="navbar-text pull-right">
-                <a href="#/profile"><span class="glyphicon glyphicon-user"></span></a>
+                <a href="#/user/{{model.userId}}/"><span class="glyphicon glyphicon-user"></span></a>
             </p>
     </div>
 </nav>

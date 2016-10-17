@@ -1,9 +1,9 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#/profile"><span class="glyphicon glyphicon-chevron-left"></span>Website List</a>
+            <a class="navbar-brand" href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-chevron-left"></span>Website List</a>
             <p class="navbar-text pull-right">
-                <a href="#/website-new"><span class="glyphicon glyphicon-plus"></span></a>
+                <a href="#/user/{{model.userId}}/website/new"><span class="glyphicon glyphicon-plus"></span></a>
             </p>
         </div>
     </div>
@@ -11,41 +11,23 @@
 
 <div class="container nounderline">
 
-    <form>
+<form>
+    <div ng-repeat="website in model.websites">
             <div class="form-group">
-                <a href="#/page-list">Address Book App</a>
+                <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
                 <p class="icon-arrow-right pull-right">
-                    <a href="#/website-edit"><span class="glyphicon glyphicon-cog"></span></a>
+                    <a href="#/user/{{model.userId}}/website/{{website._id}}"><span class="glyphicon glyphicon-cog"></span></a>
                 </p>
             </div>
-            <div class="form-group">
-                <a href="#/page-list">Blogger</a>
-                <p class="icon-arrow-right pull-right">
-                    <a href="#/website-edit"><span class="glyphicon glyphicon-cog"></span></a>
-                </p>
-
-            </div>
-            <div class="form-group">
-                <a href="#/page-list">Blogging App</a>
-                <p class="icon-arrow-right pull-right">
-                    <a href="#/website-edit"><span class="glyphicon glyphicon-cog"></span></a>
-                </p>
-            </div>
-            <div class="form-group">
-                <a href="#/page-list">Script Testing App</a>
-                <p class="icon-arrow-right pull-right">
-                    <a href="#/website-edit"><span class="glyphicon glyphicon-cog"></span></a>
-                </p>
-            </div>
-    </form>
-
+    </div>
+</form>
 
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
             <p class="navbar-text pull-right">
-                <a href="#/profile"><span class="glyphicon glyphicon-user"></span></a>
+                <a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span></a>
             </p>
     </div>
 </nav>

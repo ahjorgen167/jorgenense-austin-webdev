@@ -1,53 +1,36 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#/widget-list"><span class="glyphicon glyphicon-chevron-left"></span>
-            Edit Image Widget</a>
-            <p class="navbar-text pull-right">
-                <a href="#/widget-list"><span class="glyphicon glyphicon-ok"></span></a>
-            </p>
-        </div>
-    </div>
-</nav>
 
-<div class="container">
-
+<span ng-if="model.edit"
     <form>
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="username" placeholder="name">
+            <input type="text" ng-model="model.widget.name" class="form-control" id="username" placeholder="name">
         </div>
         <div class="form-group">
             <label for="description">Text</label>
-            <input type="text" class="form-control" id="description" placeholder="text description">
+            <input type="text" ng-model="model.widget.text" class="form-control" id="description" placeholder="text description">
         </div>
         <div class="form-group">
-            <label for="url">First Name</label>
-            <input type="url" class="form-control" id="url" placeholder="tumblr.com">
+            <label for="url">URL</label>
+            <input type="url" ng-model="model.widget.url" class="form-control" id="url" placeholder="tumblr.com">
         </div>
         <div class="form-group">
             <label for="width">Width</label>
-            <input type="number" class="form-control" id="width" placeholder="width">
+            <input type="text" ng-model="model.widget.width" class="form-control" id="width" placeholder="width">
         </div>
         <div class="form-group">
             <label for="upload">Upload</label>
-            <input type="file" class="form-control" id="upload" placeholder="width">
+            <input type="file" ng-model="model.widget.directory" class="form-control" id="upload" placeholder="width">
         </div>
         <a href="#/#" class="btn btn-primary btn-block">
             Upload Image
         </a>
-        <a href="#/widget-list" class="btn btn-danger btn-block">
-            Delete
-        </a>
     </form>
-
-
-</div>
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-            <p class="navbar-text pull-right">
-                <a href="#/profile"><span class="glyphicon glyphicon-user"></span></a>
-            </p>
+</span>
+<span ng-if="model.show">
+    <div class="wrapper">
+        <img ng-src="{{widget.url}}" class="img-responsive" width="{{widget.width}}">
+        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"><span class="glyphicon glyphicon-cog"></span></a>
     </div>
-</nav>
+
+</span>
+

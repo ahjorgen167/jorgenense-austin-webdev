@@ -1,10 +1,11 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#/website-list"><span class="glyphicon glyphicon-chevron-left"></span>
+            <a class="navbar-brand" href="#/user/{{model.userId}}/website/">
+            <span class="glyphicon glyphicon-chevron-left"></span>
             Page List</a>
             <p class="navbar-text pull-right">
-                <a href="#/page-new"><span class="glyphicon glyphicon-plus"></span></a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new"><span class="glyphicon glyphicon-plus"></span></a>
             </p>
         </div>
     </div>
@@ -13,46 +14,22 @@
 <div class="container nounderline">
 
     <form>
+        <div ng-repeat="page in model.pages">
             <div class="form-group">
-                <a href="#/widget-list">Blog Post</a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
                 <p class="icon-arrow-right pull-right">
-                    <a href="#/page-edit"><span class="glyphicon glyphicon-cog"></span></a>
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}"><span class="glyphicon glyphicon-cog"></span></a>
                 </p>
             </div>
-            <div class="form-group">
-                <a href="#/widget-list">Blogs</a>
-                <p class="icon-arrow-right pull-right">
-                    <a href="#/page-edit"><span class="glyphicon glyphicon-cog"></span></a>
-                </p>
-
-            </div>
-            <div class="form-group">
-                <a href="#/widget-list">Home</a>
-                <p class="icon-arrow-right pull-right">
-                    <a href="#/page-edit"><span class="glyphicon glyphicon-cog"></span></a>
-                </p>
-            </div>
-            <div class="form-group">
-                <a href="#/widget-list">About</a>
-                <p class="icon-arrow-right pull-right">
-                    <a href="#/page-edit"><span class="glyphicon glyphicon-cog"></span></a>
-                </p>
-            </div>
-            <div class="form-group">
-                <a href="#/widget-list">Contact Us</a>
-                <p class="icon-arrow-right pull-right">
-                    <a href="#/page-edit"><span class="glyphicon glyphicon-cog"></span></a>
-                </p>
-            </div>
+        </div>
     </form>
-
 
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
             <p class="navbar-text pull-right">
-                <a href="#/profile"><span class="glyphicon glyphicon-user"></span></a>
+                <a href="#/user/{{model.userId}}/"><span class="glyphicon glyphicon-user"></span></a>
             </p>
     </div>
 </nav>

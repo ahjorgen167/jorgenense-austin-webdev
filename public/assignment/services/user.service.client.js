@@ -34,10 +34,9 @@
             for(var u in users) {
                 current_user = users[u];
                 if(current_user._id === userId) {
-                    users[u].username = user.username;
-                    users[u].password = user.password;
-                    users[u].firstName = user.firstName;
-                    users[u].lastName = user.lastName;
+                    Object.keys(user).forEach(function(key) {
+                        users[u][key] = user[key];
+                    });
                 }
             }
         }

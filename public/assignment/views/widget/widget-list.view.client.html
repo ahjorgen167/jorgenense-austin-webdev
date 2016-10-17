@@ -1,48 +1,38 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#/page-list"><span class="glyphicon glyphicon-chevron-left"></span>
+            <a class="navbar-brand" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page"><span class="glyphicon glyphicon-chevron-left"></span>
             Widgets</a>
             <p class="navbar-text pull-right">
-                <a href="#/widget-choose"><span class="glyphicon glyphicon-plus"></span></a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
             </p>
         </div>
     </div>
 </nav>
 
 <div class="container">
-
-
-<p>
-<div class="wrapper">
-<h1>GIZMODO</h1>
-<a href="#/widget-heading"><span class="glyphicon glyphicon-cog"></span></a></div>
-</p>
-
-<p>
-
-<div class="wrapper">
-<h3>US Senate Reaches Compromise on Emergency Zika Funding</h3>
-<a href="#/widget-heading"><span class="glyphicon glyphicon-cog"></span></a>
+    <div ng-repeat="widget in model.widgets">
+        <div class="wrapper">
+            <div ng-switch on="widget.widgetType">
+            <div ng-switch-when="HEADER">
+                <div ng-include src="'/assignment/views/widget/widget-heading.view.client.html'"></div>
+            </div>
+             <div ng-switch-when="IMAGE">
+                <div ng-include src="'/assignment/views/widget/widget-image.view.client.html'"></div>
+            </div>
+            <div ng-switch-when="YOUTUBE">
+                <div ng-include src="'/assignment/views/widget/widget-youtube.view.client.html'">
+            </div>
+            <div ng-switch-default>
+                {{widget}}
+            </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-</p>
-
-<p>
-<div class="wrapper">
- <img src="http://www.post-gazette.com/image/2016/01/29/APTOPIX-Brazil-Zika-Virus.jpg" class="img-responsive" alt="Zika Virus">
-<a href="#/widget-image"><span class="glyphicon glyphicon-cog"></span></a>
-</div> 
-</p>
-
-<p>
-<div class="wrapper embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/oKza_DRY82U" allowfullscreen></iframe>
-
-<a href="#/widget-youtube"><span class="glyphicon glyphicon-cog"></span></a></div>
-</p>
-
-</div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
@@ -54,7 +44,7 @@
 
 
             <p class="navbar-text pull-right">
-                <a href="#/profile"><span class="glyphicon glyphicon-user"></span></a>
+                <a href="#/user/{{model.userId}}/"><span class="glyphicon glyphicon-user"></span></a>
             </p>
     </div>
 </nav>

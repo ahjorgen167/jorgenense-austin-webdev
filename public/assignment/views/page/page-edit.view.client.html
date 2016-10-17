@@ -1,10 +1,10 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#/page-list"><span class="glyphicon glyphicon-chevron-left"></span>Edit Page</a>
-            
-            <p class="navbar-text pull-right">
-                <a href="#/page-list"><span class="glyphicon glyphicon-ok"></span></a>
+            <a class="navbar-brand" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
+            <span class="glyphicon glyphicon-chevron-left"></span>Edit Page</a>
+            <p class="navbar-text pull-right">           
+                    <span ng-click="model.update(model.page)" class="glyphicon glyphicon-ok"></span>
             </p>
         </div>
     </div>
@@ -18,14 +18,14 @@
 
     <form>
         <div class="form-group">
-            <label for="name">Blog Post</label>
-            <input type="text" ng-model="model.page.text" class="form-control" id="name" placeholder="blog post">
+            <label for="name">Name</label>
+            <input type="text" ng-model="model.page.name" class="form-control" id="name" placeholder="blog post">
         </div>
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" ng-model="model.page.title" class="form-control" id="title" placeholder="page title">
         </div>
-        <a href="#/page-list" class="btn btn-danger btn-block">
+        <a ng-click="model.delete(model.page)" class="btn btn-danger btn-block">
             Delete
         </a>
     </form>
@@ -36,7 +36,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
             <p class="navbar-text pull-right">
-                <a href="#/profile"><span class="glyphicon glyphicon-user"></span></a>
+                <a href="#/user/{{model.userId}}/"><span class="glyphicon glyphicon-user"></span></a>
             </p>
     </div>
 </nav>

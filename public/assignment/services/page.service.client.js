@@ -23,8 +23,9 @@
             for(var p in pages) {
                 current_page = pages[p];
                 if(current_page._id === pageId) {
-                    pages[p].name = page.name;
-                    pages[p].websiteId = page.websiteId;
+                    Object.keys(page).forEach(function(key) {
+                        pages[p][key] = page[key];
+                    });
                 }
             }
         }
@@ -32,8 +33,8 @@
         function deletePage(pageId) {
             for(var p in pages) {
                 page = pages[p];
-                if(page._id === pages) {
-                    pages.splice(u, 1);
+                if(page._id === pageId) {
+                    pages.splice(p, 1);
                 }
             }
         }
@@ -62,6 +63,7 @@
             page.websiteId = websiteId;
             page._id = Math.floor((Math.random() * 999) + 1).toString();
             pages.push(page);
+            return page._id;
         }
     }
 })();

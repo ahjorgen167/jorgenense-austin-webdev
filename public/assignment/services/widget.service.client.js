@@ -12,13 +12,13 @@
 		  { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
 		  { "_id": "567", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
 		  { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-		    "url": "https://youtu.be/AM2Ivdi9c4E" },
+		    "url": "https://www.youtube.com/embed/AM2Ivdi9c4E" },
 		  { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
 		];
 
         var api = {
             createWidget: createWidget,
-            findWidgetsByUser: findWidgetsByUser,
+            findWidgetsByPageId: findWidgetsByPageId,
             findWidgetById: findWidgetById,
             updateWidget: updateWidget,
             deleteWidget: deleteWidget
@@ -35,7 +35,7 @@
             return result;
         }
 
-        function findWidgetsById(widgetId) {
+        function findWidgetById(widgetId) {
             for(var w in widgets) {
                 if(widgets[w]._id === widgetId) {
                     return widgets[w];
@@ -48,25 +48,25 @@
             widget._id = Math.floor((Math.random() * 999) + 1).toString();
             widget.pageId = pageId;
             widgets.push(widget);
+            return widget._id;
         }
 
         function updateWidget(widgetId, widget) {
             for(var w in widgets) {
                 current_widget = widgets[w];
                 if(current_widget._id === widgetId){
-                    widgets[w].text = widget.text;
-                    widgets[w].widgetType = widget.widgetType;
-                    widgets[w].pageId = widget.pageId;
-
+                    Object.keys(widget).forEach(function(key) {
+                        widgets[w][key] = widget[key];
+                    });
                 }
             }
         }
 
         function deleteWidget(widgetId) {
-            for(var w in widget) {
+            for(var w in widgets) {
                 widget = widgets[w];
                 if(widget._id === widgetId){
-                    users.splice(w, 1);
+                    widgets.splice(w, 1);
                 }
             }
         }

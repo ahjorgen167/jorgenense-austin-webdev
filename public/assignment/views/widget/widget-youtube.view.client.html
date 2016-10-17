@@ -1,46 +1,33 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#/widget-list"><span class="glyphicon glyphicon-chevron-left"></span>
-            Edit Youtube Widget</a>
-            <p class="navbar-text pull-right">
-                <a href="#/widget-list"><span class="glyphicon glyphicon-ok"></span></a>
-            </p>
-        </div>
-    </div>
-</nav>
-
-<div class="container">
-
-    <form>
+<div ng-if="model.edit">
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="username" placeholder="name">
+            <input type="text" ng-model="model.widget.name" class="form-control" id="username" placeholder="name">
         </div>
         <div class="form-group">
             <label for="description">Text</label>
-            <input type="text" class="form-control" id="description" placeholder="text description">
+            <input type="text" ng-model="model.widget.text" class="form-control" id="description" placeholder="text description">
         </div>
         <div class="form-group">
             <label for="url">URL</label>
-            <input type="url" class="form-control" id="url" placeholder="youtube.com">
+            <input type="url" ng-model="model.widget.url" class="form-control" id="url" placeholder="youtube.com">
         </div>
         <div class="form-group">
             <label for="width">Width</label>
-            <input type="number" class="form-control" id="width" placeholder="width">
+            <input type="text" ng-model="model.widget.width" class="form-control" id="width" placeholder="width">
         </div>
-        <a href="#/widget-list" class="btn btn-danger btn-block">
-            Delete
-        </a>
-    </form>
 
 
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-            <p class="navbar-text pull-right">
-                <a href="#/profile"><span class="glyphicon glyphicon-user"></span></a>
-            </p>
+<div ng-if="model.show">
+    <div class="wrapper embed-responsive embed-responsive-16by9">
+        <iframe class="youtube-player" ng-src="{{model.trustSource(widget.url)}}" allowfullscreen width="{{widget.size}}"></iframe>
+        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"><span class="glyphicon glyphicon-cog"></span></a>
+
     </div>
-</nav>
+</div>
+<!-- <div class="wrapper embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/oKza_DRY82U" allowfullscreen></iframe>
+
+<a href="#/widget-youtube"><span class="glyphicon glyphicon-cog"></span></a></div>
+-->

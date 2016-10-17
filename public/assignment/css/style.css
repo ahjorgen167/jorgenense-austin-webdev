@@ -11,13 +11,19 @@ body {
     padding-bottom: 65px;
 }
 
+button {
+  background: none;
+  outline: none;
+}
+
 a:hover{
   text-decoration: none;
 }
 
-
 .glyphicon {
+  cursor: pointer;
   color: black;
+  pointer-events: all;
 }
 
 .glyphicon-cog {

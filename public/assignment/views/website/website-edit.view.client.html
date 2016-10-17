@@ -1,61 +1,49 @@
+
+
 <div class="row container-fluid visi">
     <div class="sidebar-left col-xs-2 hidden-xs">
-    <form>
-            <div class="form-group">
-                <a href="#/page-list">Address Book App</a>
-                <p class="icon-arrow-right pull-right">
-                    <a href="#/website-edit"><span class="glyphicon glyphicon-cog"></span></a>
-                </p>
+            <ul class="list-group">
+            <div ng-repeat="website in model.websites">
+                <li class="list-group-item">
+                    <div class="form-group">
+                        <a href="#/user/{{model.userId}}/website/{{website._id}}/page/">{{website.name}}</a>
+                        <p class="navbar-text pull-right">           
+                                <span ng-click="model.update(model.website)" class="glyphicon glyphicon-ok"></span>
+                        </p>
+                    </div>
+                </li>
             </div>
-            <div class="form-group">
-                <a href="#/page-list">Blogger</a>
-                <p class="icon-arrow-right pull-right">
-                    <a href="#/website-edit"><span class="glyphicon glyphicon-cog"></span></a>
-                </p>
-
-            </div>
-            <div class="form-group">
-                <a href="#/page-list">Blogging App</a>
-                <p class="icon-arrow-right pull-right">
-                    <a href="#/website-edit"><span class="glyphicon glyphicon-cog"></span></a>
-                </p>
-            </div>
-            <div class="form-group">
-                <a href="#/page-list">Script Testing App</a>
-                <p class="icon-arrow-right pull-right">
-                    <a href="#/website-edit"><span class="glyphicon glyphicon-cog"></span></a>
-                </p>
-            </div>
-    </form>
-
+            </ul>            
     </div>
 
 <div class="col-xs-12 col-sm-10">
 
-    <form>
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" ng-model="model.website.name" class="form-control" id="name" placeholder="name">
-        </div>
-        <div class="form-group">
-            <label for="description">Description</label>
-            <textarea rows="3" ng-model="model.website.description" class="form-control" id="description" placeholder="description of the website here"></textarea>
-        </div>
-        <a href="#/website-list" class="btn btn-danger btn-block">
-            Delete
-        </a>
-    </form>
-
-
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" ng-model="model.website.name" class="form-control" id="name" placeholder="name">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea rows="3" ng-model="model.website.description" class="form-control" id="description" placeholder="description of the website here"></textarea>
+                </div>
+                <a class="btn btn-success btn-block"
+                    ng-click="model.update(model.website)">Update</a>
+                <a ng-click="model.delete(model.website)" 
+                    class="btn btn-danger btn-block">Delete</a>
+            </form>
 </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#/website-list"><span class="glyphicon glyphicon-chevron-left"></span>Website Edit</a>
+            <a class="navbar-brand" href="#/user/{{model.userId}}/website">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                Website Edit
+            </a>
             <p class="navbar-text pull-right">
-                <a href="#/website-list"><span class="glyphicon glyphicon-ok"></span></a>
+                <a href="#/user/{{model.userId}}/website"><span class="glyphicon glyphicon-ok"></span></a>
             </p>
         </div>
     </div>
@@ -66,7 +54,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
             <p class="navbar-text pull-right">
-                <a href="#/profile"><span class="glyphicon glyphicon-user"></span></a>
+                <a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span></a>
             </p>
     </div>
 </nav>
