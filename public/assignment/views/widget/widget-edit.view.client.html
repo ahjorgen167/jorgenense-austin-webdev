@@ -9,7 +9,6 @@
         </div>
     </div>
 </nav>
-<form>
     <div ng-switch="model.widget.widgetType">
         <div ng-switch-when="HEADER">
             <div ng-include src="'/assignment/views/widget/widget-heading.view.client.html'"></div>
@@ -21,11 +20,9 @@
             <div ng-include src="'/assignment/views/widget/widget-youtube.view.client.html'"></div>
         </div>
     </div>
-
     <a ng-click="model.delete(model.widget)" class="btn btn-danger btn-block">
         Delete
     </a>
-</form>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">

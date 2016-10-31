@@ -12,7 +12,7 @@
     </div>
 </nav>
 
-<div class="container">
+<div jga-sortable callback="model.sort(start, end)" class="container">
     <div ng-repeat="widget in model.widgets">
         <div class="wrapper">
             <div ng-switch on="widget.widgetType">
@@ -23,13 +23,13 @@
                 <div ng-include src="'/assignment/views/widget/widget-image.view.client.html'"></div>
             </div>
             <div ng-switch-when="YOUTUBE">
-                <div ng-include src="'/assignment/views/widget/widget-youtube.view.client.html'">
-            </div>
+                <div ng-include src="'/assignment/views/widget/widget-youtube.view.client.html'"></div>
             <div ng-switch-default>
                 {{widget}}
             </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 

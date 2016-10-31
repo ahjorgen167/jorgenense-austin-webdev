@@ -1,8 +1,15 @@
-
-
-(function (){ 
-    angular.module("WebAppMaker", ["ngRoute"]);
+(function(){
+    angular.module("WebAppMaker", ["ngRoute","jgaDirectives"]);
 })();
+
+/*
+(function (){ 
+    angular.module("WebAppMaker", ["jgaDirectives","ngRoute"]);
+})();
+*/
+
+
+
 /*
 (function() {
     angular

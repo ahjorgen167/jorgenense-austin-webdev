@@ -8,14 +8,20 @@
     function LoginController($location, UserService) {
         var vm = this;
         vm.login = login;
-
+        vm.error = null;
         function login(username, password) {
-            var user = UserService.findUserByCredentials(username, password);
-            if(user === null) {
-                vm.error = "No such user";
-            } else {
-                $location.url("/user/" + user._id);
-            }
+            UserService
+                .findUserByCredentials(username, password)
+                .success(function(user){
+                    if(user === '0') {
+                        vm.error = "No such user";
+                    } else {
+                        $location.url("/user/" + user._id);
+                    }
+                })
+                .error(function(error){
+                    console.log(error);
+                });
         }
     }
 
@@ -23,40 +29,59 @@
         var vm = this;        
         vm.register = register;
 
+
         function register(username, password, passwordVerification) {
             if(password !== passwordVerification){
                 vm.error = "Invalid registration - passwords must match";
                 return;
             }
-            var user = {
-                "username": username,
-                "password": password
-            }
-            user.username = username;
-            user.password = password;
-            var userId = UserService.createUser(user);
-            if(userId === null){
-                vm.error = "There was an error creating this user.  Please try again.";   
-            } else{
-                $location.url("/user/" + userId);
-            }
-        }
 
+            UserService
+                .createUser(username, password)
+                .success(function(user){
+                    $location.url("/user/"+user._id);
+                })
+                .error(function (error) {
+                    console.log(error);        
+                });
+            }
     }
 
     function ProfileController($routeParams, $location, UserService) {
         var vm = this;
-        vm.update = update;
-        vm.userId = $routeParams["uid"];
+        var userId = parseInt($routeParams.uid);
 
-        var user = UserService.findUserById(vm.userId);
-        if(user != null) {
-            vm.user = user;
+        vm.updateUser = updateUser;
+        vm.unregisterUser = unregisterUser;
+
+        function init() {
+            UserService
+                .findUserById(userId)
+                .success(function(user){
+                    if(user != '0') {
+                        vm.user = user;
+                    }
+                })
+                .error(function(error){
+                    console.log(error);
+                    vm.error = "User could not be located";
+                });
         }
+        init();
 
-        function update(user) {
-            UserService.updateUser(user._id, user);
-            $location.url("/user/" + vm.userId);
+        function updateUser() {
+            UserService.updateUser(vm.user);
+        }
+        
+        function unregisterUser() {
+            UserService
+                .deleteUser(vm.user._id)
+                .success(function(){
+                    $location.url("/login");
+                })
+                .error(function(error){
+                    console.log(error);
+                });
         }
     }
 })();

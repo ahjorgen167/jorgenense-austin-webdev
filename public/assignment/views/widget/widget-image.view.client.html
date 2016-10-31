@@ -1,7 +1,15 @@
-
-<span ng-if="model.edit"
-    <form>
-        <div class="form-group">
+<span ng-if="model.edit">
+    <form action="/api/upload"  method="post" enctype="multipart/form-data">
+        <input  name="myFile"   type="file" class="form-control"/>
+        <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
+        <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
+        <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
+    </form>
+    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/flickr-search" class="btn btn-block btn-success">Search Flickr</a>
+</span>
+<!--
+    <form action="/api/upload"  method="post" enctype="multipart/form-data">
+    <div class="form-group">
             <label for="name">Name</label>
             <input type="text" ng-model="model.widget.name" class="form-control" id="username" placeholder="name">
         </div>
@@ -25,7 +33,8 @@
             Upload Image
         </a>
     </form>
-</span>
+    -->
+
 <span ng-if="model.show">
     <div class="wrapper">
         <img ng-src="{{widget.url}}" class="img-responsive" width="{{widget.width}}">

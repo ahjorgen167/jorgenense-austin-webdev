@@ -1,0 +1,40 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+
+
+
+            <a class="navbar-brand" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}"><span class="glyphicon glyphicon-chevron-left"></span>
+            Flickr Search</a>
+            <!--
+            <p class="navbar-text pull-right">
+                <span ng-click="model.update(model.widget)" class="glyphicon glyphicon-ok"></span></a>
+            </p>
+            -->
+        </div>
+    </div>
+</nav>
+
+<div class="input-group">
+    <input ng-model="searchText" type="text" class="form-control">
+    <span class="input-group-btn">
+        <a ng-click="model.searchPhotos(searchText)" class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+    </span>
+</div>
+
+<div class="row">
+    <div class="col-xs-4 col-s-6 col-10" ng-repeat="photo in model.photos.photo">
+        <img ng-click="model.selectPhoto(photo)"
+             ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg"/>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+            <p class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}/"><span class="glyphicon glyphicon-user"></span></a>
+            </p>
+    </div>
+</nav>

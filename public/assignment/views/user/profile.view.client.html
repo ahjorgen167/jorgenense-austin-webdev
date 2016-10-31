@@ -1,8 +1,3 @@
-
-<!-- HEADER -->
-
-<!--<ng-include src="'views/user/profile-header.view.client.html'" class="">-->
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -10,7 +5,7 @@
                 Profile
             </a>
                 <p class="navbar-text pull-right">           
-                    <span ng-click="model.update(model.user)" class="glyphicon glyphicon-ok"></span>
+                    <span ng-click="model.updateUser()" class="glyphicon glyphicon-ok"></span>
                 </p>
         </div>
     </div>
@@ -45,6 +40,7 @@
 
     <a class="btn btn-primary btn-block" href="#/user/{{model.user._id}}/website">Websites</a>
     <a class="btn btn-danger btn-block" href="#/login">Logout</a>
+    <a class="btn btn-warning btn-block" ng-click="model.unregisterUser()">Unregister</a>
 </div>
 
 
@@ -53,7 +49,7 @@
         <div class="row navbar-text" style="width: 100%">
             <div class="col-xs-3 text-center">
                 <a href="#">
-                    <span class="glyphicon glyphicon-ok"></span>
+                    <span ng-click="model.updateUser()" class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
             <div class="col-xs-3 text-center">
