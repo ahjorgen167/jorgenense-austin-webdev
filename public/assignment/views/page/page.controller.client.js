@@ -36,7 +36,6 @@
             PageService
                 .createPage(vm.websiteId, page)
                 .success(function(){
-                    console.log("hello");
                     $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/");
                 })
                 .error(function(error){
