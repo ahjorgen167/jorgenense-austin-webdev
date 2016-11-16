@@ -1,0 +1,36 @@
+<div ng-if="model.edit || model.new">
+    <form>
+        <div class="form-group">
+            <label for="text">Text</label>
+            <input type="text" ng-model="model.widget.text" class="form-control" id="text" placeholder="text">
+        </div>
+        <div class="form-group">
+            <label for="rows">Rows</label>
+            <input type="number" ng-model="model.widget.rows" class="form-control" id="rows" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="placeholder">Placeholder</label>
+            <input type="text" ng-model="model.widget.placeholder" class="form-control" id="placeholder" placeholder="placeholder">
+        </div>
+
+        <div class="form-group">
+            <label for="formatted">Formatted</label>
+            <input ng-model="model.widget.formatted" type="checkbox" id="formatted">
+        </div>    
+    </form>
+</div>
+<div ng-if="model.show">
+    <div class="wrapper">
+            <div ng-if="widget.formatted" text-angular
+             ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+                ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+                ['indent','outdent'],['html']]"></div>
+            <input ng-if="!widget.formatted && (!widget.rows || widget.rows===1)"
+                   placeholder="{{widget.textInput.placeholder}}" class="form-control"/>
+            <textarea ng-if="!widget.formatted && (widget.rows > 1)"
+                      rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
+                      class="form-control">{{widget.text}}</textarea>
+        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"><span class="glyphicon glyphicon-cog"></span></a>
+
+    </div>
+</div>

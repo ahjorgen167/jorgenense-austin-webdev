@@ -28,8 +28,7 @@
             <label for="description">Description</label>
             <textarea rows="3" ng-model="model.website.description" class="form-control" id="description" placeholder="description of the website here"></textarea>
         </div>
-        <a class="btn btn-primary btn-block"
-            ng-click="model.create(model.website)">Create</a>
+        <a class="btn btn-primary btn-block" ng-click="model.create(model.website)">Create</a>
     </form>
 
 
@@ -45,7 +44,7 @@
                 Website New
             </a>
             <p class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}/website"><span class="glyphicon glyphicon-ok"></span></a>
+                <span class="glyphicon glyphicon-ok" ng-click="model.create(model.website)"></span>
             </p>
         </div>
     </div>

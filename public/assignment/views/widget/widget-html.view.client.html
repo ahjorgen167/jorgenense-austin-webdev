@@ -1,0 +1,17 @@
+<div ng-if="model.edit || model.new">
+    <form>
+        <div ng-model="model.widget.text"
+             text-angular
+             ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+                ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+                ['indent','outdent'],['html']]">
+        </div>
+    </form>
+</div>
+<div ng-if="model.show">
+    <div class="wrapper">
+        <div ta-bind ng-model="widget.text"></div>
+        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"><span class="glyphicon glyphicon-cog"></span></a>
+
+    </div>
+</div>

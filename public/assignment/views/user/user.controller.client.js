@@ -13,7 +13,7 @@
             UserService
                 .findUserByCredentials(username, password)
                 .success(function(user){
-                    if(user === '0') {
+                    if(user == null) {
                         vm.error = "No such user";
                     } else {
                         $location.url("/user/" + user._id);
@@ -39,7 +39,11 @@
             UserService
                 .createUser(username, password)
                 .success(function(user){
-                    $location.url("/user/"+user._id);
+                    if(user != null){
+                        $location.url("/user/"+user._id);
+                    } else {
+                        vm.error = "There is no user by that name";
+                    }
                 })
                 .error(function (error) {
                     console.log(error);        
@@ -49,7 +53,7 @@
 
     function ProfileController($routeParams, $location, UserService) {
         var vm = this;
-        var userId = parseInt($routeParams.uid);
+        var userId = $routeParams.uid;
 
         vm.updateUser = updateUser;
         vm.unregisterUser = unregisterUser;
@@ -58,8 +62,10 @@
             UserService
                 .findUserById(userId)
                 .success(function(user){
-                    if(user != '0') {
+                    if(user != null) {
                         vm.user = user;
+                    } else {
+                        vm.error = "There is no user by that name";
                     }
                 })
                 .error(function(error){
@@ -70,7 +76,14 @@
         init();
 
         function updateUser() {
-            UserService.updateUser(vm.user);
+            UserService
+                .updateUser(vm.user)
+                .success(function(response){
+                    $location.url("/user/" + vm.user._id);
+                })
+                .error(function(error){
+                   console.log(error); 
+                });                
         }
         
         function unregisterUser() {

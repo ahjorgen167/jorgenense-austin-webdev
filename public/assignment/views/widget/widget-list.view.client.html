@@ -11,12 +11,19 @@
         </div>
     </div>
 </nav>
+{{model.widget.text}}
 
 <div jga-sortable callback="model.sort(start, end)" class="container">
     <div ng-repeat="widget in model.widgets">
         <div class="wrapper">
-            <div ng-switch on="widget.widgetType">
-            <div ng-switch-when="HEADER">
+            <div ng-switch on="widget.type">
+            <div ng-switch-when="TEXT">
+                <div ng-include src="'/assignment/views/widget/widget-text.view.client.html'"></div>
+            </div>
+            <div ng-switch-when="HTML">
+                <div ng-include src="'/assignment/views/widget/widget-html.view.client.html'"></div>
+            </div>
+            <div ng-switch-when="HEADING">
                 <div ng-include src="'/assignment/views/widget/widget-heading.view.client.html'"></div>
             </div>
              <div ng-switch-when="IMAGE">

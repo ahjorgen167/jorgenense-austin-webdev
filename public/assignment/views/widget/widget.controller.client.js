@@ -2,8 +2,11 @@
     angular
         .module("WebAppMaker")
         .controller("WidgetListController", WidgetListController)
-        .controller("NewWidgetController", NewWidgetController)
+        .controller("CreateNewWidgetController", CreateNewWidgetController)
+        .controller("ChooseNewWidgetController", ChooseNewWidgetController)
         .controller("EditWidgetController", EditWidgetController);
+
+    var l = [];
 
     function WidgetListController($routeParams, $sce, $http, WidgetService) {
         var vm = this;
@@ -51,7 +54,32 @@
         }       
     }
 
-    function NewWidgetController($routeParams, $location, WidgetService) {
+    function CreateNewWidgetController($routeParams, $location, WidgetService) {
+        var vm = this;
+        vm.new = true;
+        vm.websiteId = $routeParams["wid"];
+        vm.userId = $routeParams["uid"];
+        vm.pageId = $routeParams["pid"];
+        vm.widgetType = $routeParams["widgettype"].toUpperCase();
+
+        vm.create = create;
+        vm.widget = {};
+
+        function create(widget){
+            widget['type'] = vm.widgetType;
+            WidgetService
+                .createWidget(vm.pageId, widget)
+                .success(function(){
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                })
+                .error(function(error){
+                    console.log(error);
+                });
+        }
+    }
+
+
+    function ChooseNewWidgetController($routeParams, $location, WidgetService) {
         var vm = this;
         vm.new = true;
         vm.websiteId = $routeParams["wid"];

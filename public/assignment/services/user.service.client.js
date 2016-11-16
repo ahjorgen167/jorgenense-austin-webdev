@@ -21,7 +21,8 @@
 
         function updateUser(user) {
             var url = "/api/user/" + user._id;
-            $http.put(url, user);
+            var response = $http.put(url, user);
+            return response;
         }
 
         function findUserByUsername(username){

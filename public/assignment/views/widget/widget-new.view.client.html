@@ -2,14 +2,14 @@
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"><span class="glyphicon glyphicon-chevron-left"></span>
-            Edit {{model.widget.widgetType}} Widget</a>
+            Create {{model.widgetType}} Widget</a>
             <p class="navbar-text pull-right">
-                <span ng-click="model.update(model.widget)" class="glyphicon glyphicon-ok"></span></a>
+                <span ng-click="model.create(model.widget)" class="glyphicon glyphicon-ok"></span></a>
             </p>
         </div>
     </div>
 </nav>
-    <div ng-switch="model.widget.type">
+    <div ng-switch="model.widgetType">
         <div ng-switch-when="HEADING">
             <div ng-include src="'/assignment/views/widget/widget-heading.view.client.html'"></div>
         </div>
@@ -26,10 +26,14 @@
             <div ng-include src="'/assignment/views/widget/widget-youtube.view.client.html'"></div>
         </div>
     </div>
-    <a ng-click="model.delete(model.widget)" class="btn btn-danger btn-block">
-        Delete
-    </a>
-
+	    <a ng-click="model.create(model.widget)" class="btn btn-primary btn-block">
+	        Create
+	    </a>
+	    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="btn btn-block btn-danger">
+	        Cancel
+	    </a>
+	    
+    </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
             <p class="navbar-text pull-right">

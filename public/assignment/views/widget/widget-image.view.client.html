@@ -1,4 +1,4 @@
-<span ng-if="model.edit">
+<span ng-if="model.edit || model.new">
     <form action="/api/upload"  method="post" enctype="multipart/form-data">
         <input  name="myFile"   type="file" class="form-control"/>
         <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
