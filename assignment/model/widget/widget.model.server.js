@@ -5,7 +5,7 @@ module.exports = function() {
     var WidgetSchema = require("./widget.schema.server")();
     var Widget = mongoose.model("Widget", WidgetSchema);
 
-    //var Page = require('mongoose').model('Page');
+    var Page = require('mongoose').model('Page');
 
     var api = {
         createWidgetForPage: createWidgetForPage,
@@ -40,8 +40,8 @@ module.exports = function() {
     }
 
     function findAllWidgetsForPage(pageId){
-        return Widget.find({'_page':pageId});
-/*        var deferred = q.defer();
+//        return Widget.find({'_page':pageId});
+        var deferred = q.defer();
         Page.findById(pageId, function (err, page) {
             if (err) {
                 deferred.reject(err);
@@ -50,12 +50,12 @@ module.exports = function() {
             }
         });
         return deferred.promise;
-  */  
+
     }
 
     function findWidgetById(widgetId){
-        return Widget.findById(widgetId);
-/*        var deferred = q.defer();
+//        return Widget.findById(widgetId);
+        var deferred = q.defer();
 
         Widget.findById(widgetId, function(err, widget){
             if (err) {
@@ -66,12 +66,12 @@ module.exports = function() {
             }
         });
         return deferred.promise;
-*/
+
     }
 
     function updateWidget(widgetId, widget){
-        return Widget.update({_id:widgetId},{$set: widget})
-/*
+//        return Widget.update({_id:widgetId},{$set: widget})
+
         var deferred = q.defer();
         Page.findById(widget._page, function (err, page) {
             if (err) {
@@ -97,12 +97,12 @@ module.exports = function() {
             }
         });
         return deferred.promise;
-*/
+
     }
 
     function deleteWidget(widgetId) {
-        return Widget.remove({_id: widgetId});
-/*
+//        return Widget.remove({_id: widgetId});
+
         var deferred = q.defer();
         Widget.remove({_id: widgetId}, function (err, widgetResponse) {
             if (err) {
@@ -135,12 +135,12 @@ module.exports = function() {
             }
         });
         return deferred.promise;
-        */
+        
     }
 
     function reorderWidgets(pageId, startIndex, endIndex){
-        return Widget.find({_page: pageId});
-/*        var deferred = q.defer();
+//        return Widget.find({_page: pageId});
+        var deferred = q.defer();
         Page.findById(pageId, function (err, page) {
             if (err) {
                 deferred.reject(err);
@@ -153,6 +153,6 @@ module.exports = function() {
             }
         });
         return deferred.promise;
-*/    }
+    }
 
 };

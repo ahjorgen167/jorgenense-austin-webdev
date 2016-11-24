@@ -10,6 +10,10 @@ module.exports = function() {
         email: String,
         phone: String,
         dateCreated: {type: Date, default: Date.now},
+        facebook: {
+            id:    String,
+            token: String
+        },
         websites: [Website]
     }, {collection: "assignment.user"});
 

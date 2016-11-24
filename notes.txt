@@ -1,2 +1,126 @@
 MongoDB:
 "C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe"
+
+
+TODOs
+Implement PassportJS Facebook Strategy
+In user.schema.server.js, add a subdocument to capture the user's facebook identity.
+
+
+var UserSchema = mongoose.Schema({
+    facebook: {
+        id:    String,
+        token: String
+    }
+});
+
+
+In user.model.server.js, add a findUserByFacebookId API to retrieve a user by their facebook ID. Implement in a function of the same name
+
+
+var api = {
+    findUserByFacebookId: findUserByFacebookId,
+};
+
+function findUserByFacebookId(facebookId) {
+    return User.findOne({'facebook.id': facebookId});
+}
+
+
+In login.view.client.html, add a facebook login button referencing a Web service configured to login the user using facebook
+
+
+<a href="/auth/facebook" class="btn btn-primary btn-block">
+    <span class="fa fa-facebook"></span>
+    Facebook
+</a>
+
+
+In user.service.server.js, load the passport facebook strategy
+
+
+var passport         = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
+
+
+Create a Web service that uses passport.authenticate() to delegate authentication to facebook
+
+
+app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
+
+Facebook will call back to a URL configured at their developer website, e.g.,
+
+
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+        successRedirect: '/#/user',
+        failureRedirect: '/#/login'
+}));
+
+
+From facebook's developer's Website, configure a client ID (application ID), client secret, and callback URL. Configure these in the following environment variables locally and on OpenShift:
+
+
+FACEBOOK_CLIENT_ID,
+FACEBOOK_CLIENT_SECRET,
+FACEBOOK_CALLBACK_URL
+
+
+These can be loaded from the service into a local object as follows:
+
+
+var facebookConfig = {
+    clientID     : process.env.FACEBOOK_CLIENT_ID,
+    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+    callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+};
+
+
+Use the facebook configuration to register a middle tier that will handle facebook related requests
+
+
+passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
+
+When Facebook calls back, it will pass a token and profile information that can be cached in the data model keyed off of facebook's profile ID. Use the ID to look up the user in the database. If the user is not there, store the as a new user, and logged them in. If the user is already there, then don't create them and just logged them in.
+
+
+function facebookStrategy(token, refreshToken, profile, done) {
+    developerModel
+        .findUserByFacebookId(profile.id)
+
+
+Implement Client Side Validation and Error Handling
+Use angular validation and controller logic to enforce the following form element requirements. Highlight invalid fields and display an error message below the invalid field. Display an error alert box at the top of the view styled as a bootstrap alert box, e.g., class="alert alert-danger". Only display error messages after a form has been submitted. Turn off autocorrect and auto capitalization for username field in the login view.
+
+
+View
+Field
+Constraint
+Login
+username, password
+required
+Register
+username, password, verify password
+required
+password, verify password
+must match
+New Website
+name
+required
+Edit Website
+name
+required
+New Page
+name
+required
+Edit Page
+name
+required
+New Widget
+name
+required
+Edit Widget
+name
+required
