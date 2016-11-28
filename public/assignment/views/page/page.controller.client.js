@@ -33,6 +33,11 @@
         vm.page = {};
 
         function create(page){
+            if(!page.name || (page.name == "")){
+                vm.error = "You must include a page name";
+                return;
+            }
+
             PageService
                 .createPage(vm.websiteId, page)
                 .success(function(){
@@ -65,9 +70,12 @@
         }
         init();
 
-
-
         function update(page){
+            if(!page.name || (page.name == "")){
+                vm.error = "You must include a page name";
+                return;
+            }
+
             PageService
                 .updatePage(page._id, page)
                 .success(function(){

@@ -88,10 +88,12 @@ module.exports = function(app, models) {
     function updateWidget(req, res) {
         var widget = req.body;
         var widgetId = req.params.wgid;
-
+        console.log(widgetId);
+        console.log(widget);
         widgetModel
             .updateWidget(widgetId, widget)
             .then(function(response){
+                console.log(response);
                 res.json(response);
             }, function(error){
                 console.log(error);
@@ -100,31 +102,39 @@ module.exports = function(app, models) {
     }
 
     function uploadImage(req, res) {
+
         var widgetId      = req.body.widgetId;
         var width         = req.body.width;
+        var pageId = req.body.pageId;
+        var redirect = '/assignment/#' + req.body.redirect;
         var myFile        = req.file;
         var filename      = myFile.filename;
         var url = '/uploads/' + filename;
-
+        console.log(redirect);
         widget = {
-            'widgth': width,
-            'url': url
+            type: 'IMAGE',
+            widgth: width,
+            url: url
         }
         if(widgetId){
             widgetModel
                 .updateWidget(widgetId, widget)
                 .then(function(response){
+                    res.redirect(redirect);
                     res.json(response);
                 }, function(error){
                     console.log(error);
+                    res.redirect(redirect);
                     res.sendCode(400).send(error);
                 });
         } else {
             widgetModel
                 .createWidgetForPage(pageId, widget)
                 .then(function(widget){
+                    res.redirect(redirect);
                     res.json(widget);
                 },function(error){
+                    res.redirect(redirect);
                     console.log(error);
                     res.sendCode(400).send(error);
                 });

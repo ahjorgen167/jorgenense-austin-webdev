@@ -18,20 +18,24 @@
 
 <div class="col-xs-12 col-sm-10">
 
-            <form>
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" ng-model="model.website.name" class="form-control" id="name" placeholder="name">
-                </div>
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea rows="3" ng-model="model.website.description" class="form-control" id="description" placeholder="description of the website here"></textarea>
-                </div>
-                <a class="btn btn-success btn-block"
-                    ng-click="model.update(model.website)">Update</a>
-                <a ng-click="model.delete(model.website)" 
-                    class="btn btn-danger btn-block">Delete</a>
-            </form>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+
+        <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" ng-model="model.website.name" class="form-control" id="name" placeholder="name">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea rows="3" ng-model="model.website.description" class="form-control" id="description" placeholder="description of the website here"></textarea>
+            </div>
+            <a class="btn btn-success btn-block"
+                ng-click="model.update(model.website)">Update</a>
+            <a ng-click="model.delete(model.website)" 
+                class="btn btn-danger btn-block">Delete</a>
+        </form>
 </div>
 </div>
 

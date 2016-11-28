@@ -37,29 +37,38 @@ module.exports = function(app, models) {
     app.get('/api/loggedin', loggedin);
     //app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook', passport.authenticate('facebook'));
-
+/*
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+*/
     app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect: '/assignment/#/user',
-            failureRedirect: '/assignment/#/login'
-    }));
+        passport.authenticate('facebook', { failureRedirect: '/assignment/#/login' }),
+        function(req, res){
+            var url = '/assignment/#/user' + req.user._id.toString()
+            res.redirect('/assignment/#/user/' + req.user._id.toString());
+            //successRedirect: '/assignment/#/user',
+        }
+    );
 
     function facebookLogin(token, refreshToken, profile, done) {
-        console.log("hello from facebookLogin");
         userModel
             .findUserByFacebookId(profile.id)
             .then(function(user) {
                     if(user) {
                         return done(null, user);
                     } else {
-                            facebookUser = {
-                                username: profile.displayName.replace(/ /g,''),
-                                facebook: {
-                                    token: token,
-                                    id: profile.id,
-                                    displayName: profile.displayName
-                                }
-                            };
+                        facebookUser = {
+                            username: profile.displayName.replace(/ /g,''),
+                            facebook: {
+                                token: token,
+                                id: profile.id,
+                                displayName: profile.displayName
+                            }
+                        };
                         userModel
                             .createUser(facebookUser)
                             .then(
@@ -74,6 +83,7 @@ module.exports = function(app, models) {
 
 
     function loggedin(req, res) {
+        console.log("hit here");
         res.send(req.isAuthenticated() ? req.user : '0');
     }
 
@@ -123,6 +133,8 @@ module.exports = function(app, models) {
     }
 
     function localStrategy(username, password, done) {
+        console.log("trying local strategy");
+        console.log(password);
         userModel
             .findUserByUsername(username)
             .then(

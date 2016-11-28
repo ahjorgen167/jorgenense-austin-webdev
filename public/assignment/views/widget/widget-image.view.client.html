@@ -1,39 +1,20 @@
 <span ng-if="model.edit || model.new">
     <form action="/api/upload"  method="post" enctype="multipart/form-data">
         <input  name="myFile"   type="file" class="form-control"/>
+        <input name="redirect" value="{{model.redirect}}" style="display: none" />
+        <input name="pageId" value="{{model.pageId}}" style="display: none" />
         <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
         <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
         <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
     </form>
+<span ng-if="model.edit">
     <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/flickr-search" class="btn btn-block btn-success">Search Flickr</a>
 </span>
-<!--
-    <form action="/api/upload"  method="post" enctype="multipart/form-data">
-    <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" ng-model="model.widget.name" class="form-control" id="username" placeholder="name">
-        </div>
-        <div class="form-group">
-            <label for="description">Text</label>
-            <input type="text" ng-model="model.widget.text" class="form-control" id="description" placeholder="text description">
-        </div>
-        <div class="form-group">
-            <label for="url">URL</label>
-            <input type="url" ng-model="model.widget.url" class="form-control" id="url" placeholder="tumblr.com">
-        </div>
-        <div class="form-group">
-            <label for="width">Width</label>
-            <input type="text" ng-model="model.widget.width" class="form-control" id="width" placeholder="width">
-        </div>
-        <div class="form-group">
-            <label for="upload">Upload</label>
-            <input type="file" ng-model="model.widget.directory" class="form-control" id="upload" placeholder="width">
-        </div>
-        <a href="#/#" class="btn btn-primary btn-block">
-            Upload Image
-        </a>
-    </form>
-    -->
+<span ng-if="model.new">
+    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/flickr-search" class="btn btn-block btn-success">Search Flickr</a>
+</span>
+</span>
+
 
 <span ng-if="model.show">
     <div class="wrapper">

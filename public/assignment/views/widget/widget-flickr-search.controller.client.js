@@ -27,16 +27,32 @@
         function selectPhoto(photo) {
             var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
             url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
-            WidgetService
-                .updateWidget(vm.widgetId, {url: url})
-                .success(function(success){
-                    var url = "/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/";
-                    $location.url(url);
-                })
-                .error(function(error){
-                    console.log(error);
-                });
-                //.then(...);
+            if(typeof vm.widgetId === 'undefined'){
+                var newWidget = {
+                    url: url,
+                    type: 'IMAGE',
+                    _page: vm.pageId
+                }
+                WidgetService
+                    .createWidget(vm.pageId, newWidget)
+                    .success(function(success){
+                        var url = "/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/";
+                        $location.url(url);
+                    })
+                    .error(function(error){
+                        console.log(error);
+                    });
+            } else {
+                WidgetService
+                    .updateWidget(vm.widgetId, {url: url, _page: vm.pageId, type:'IMAGE'})
+                    .success(function(success){
+                        var url = "/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/";
+                        $location.url(url);
+                    })
+                    .error(function(error){
+                        console.log(error);
+                    });                
+            }
         }
 
     }

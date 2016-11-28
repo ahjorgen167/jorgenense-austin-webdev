@@ -9,6 +9,7 @@
         var vm = this;
         vm.login = login;
         vm.error = null;
+
         function login(username, password) {
             if(!username || !password){
                 vm.error = "Both username and password must not be blank.";
@@ -71,7 +72,6 @@
         vm.logout = logout;
         vm.updateUser = updateUser;
         vm.unregisterUser = unregisterUser;
-
         function logout() {
             UserService
                 .logout()

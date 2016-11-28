@@ -61,7 +61,7 @@
         vm.userId = $routeParams["uid"];
         vm.pageId = $routeParams["pid"];
         vm.widgetType = $routeParams["widgettype"].toUpperCase();
-
+        vm.redirect = "/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget";
         vm.create = create;
         vm.widget = {};
 
@@ -78,7 +78,6 @@
         }
     }
 
-
     function ChooseNewWidgetController($routeParams, $location, WidgetService) {
         var vm = this;
         vm.new = true;
@@ -88,7 +87,6 @@
 
         vm.create = create;
         vm.widget = {};
-
         function create(widget){
             WidgetService
                 .createWidget(vm.websiteId, widget)
@@ -113,6 +111,8 @@
         vm.websiteId = $routeParams["wid"];
         vm.userId = $routeParams["uid"];
         vm.widgetId = $routeParams["wgid"];
+        vm.redirect = "/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget";
+
 
         function init(){
             WidgetService

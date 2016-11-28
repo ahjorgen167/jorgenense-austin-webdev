@@ -29,6 +29,7 @@
         vm.create = create;
         vm.userId = $routeParams["uid"];
         website = {};
+        vm.error = null;
 
         function init(){
             WebsiteService
@@ -43,6 +44,10 @@
         init();
 
         function create(website){
+            if(!website.name || (website.name == "")){
+                vm.error = "You must include a name";
+                return;
+            }
             WebsiteService
                 .createWebsite(vm.userId, website)
                 .success(function(website){
@@ -56,6 +61,7 @@
 
     function EditWebsiteController($location, $routeParams, WebsiteService) {
         var vm = this;
+        vm.error = null;
         vm.delete = deleteWebsite;
         vm.update = update;
 
@@ -84,6 +90,11 @@
         init();
 
         function update(website){
+            if(!website.name || (website.name == "")){
+                vm.error = "You must include a website name";
+                return;
+            }
+
             WebsiteService
                 .updateWebsite(website._id, website)
                 .success(function(website){

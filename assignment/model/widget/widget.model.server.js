@@ -40,7 +40,6 @@ module.exports = function() {
     }
 
     function findAllWidgetsForPage(pageId){
-//        return Widget.find({'_page':pageId});
         var deferred = q.defer();
         Page.findById(pageId, function (err, page) {
             if (err) {
@@ -54,7 +53,6 @@ module.exports = function() {
     }
 
     function findWidgetById(widgetId){
-//        return Widget.findById(widgetId);
         var deferred = q.defer();
 
         Widget.findById(widgetId, function(err, widget){
@@ -70,8 +68,6 @@ module.exports = function() {
     }
 
     function updateWidget(widgetId, widget){
-//        return Widget.update({_id:widgetId},{$set: widget})
-
         var deferred = q.defer();
         Page.findById(widget._page, function (err, page) {
             if (err) {
