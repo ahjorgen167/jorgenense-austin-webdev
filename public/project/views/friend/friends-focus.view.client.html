@@ -1,0 +1,59 @@
+<div ng-include src="'/project/views/header/header.view.client.html'"></div>
+
+<div class="row container-fluid visi">
+
+    <!-- SIDEBAR -->
+    <div ng-include src="'/project/views/header/friends-sidebar.view.client.html'"></div>
+
+    <div class="col-xs-12 col-sm-10">
+
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-sm-5 text-center">
+                    <img ng-src="{{model.friend.avatar}}" class="img-thumbnail" height="100%" width="128"/>
+                </div>
+                <div class="col-xs-4 col-sm-3 col-xs-1-offset text-center username" >
+                    <h1>{{model.friend.username}}</h1>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-4 col-sm-3 text-center">
+                    <span class="glyphicon glyphicon-plus-sign"  ng-click="model.addFriend()" title="Add Friend"></span>
+                </div>
+                <div class="col-xs-4 col-sm-3 text-center">
+                    <span class="glyphicon glyphicon-knight" ng-click="model.challengeToGame()" title="Challenge to a new Game"></span>
+                </div>
+                <div class="col-xs-4 col-sm-3 text-center">
+                    <a href="#/player/{{model.userId}}/message/{{model.friendId}}"><span class="glyphicon glyphicon-envelope"></span></a>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container">
+            <ul class="list-group col-xs-12 col-sm-10">
+                <li class="list-group-item">
+                    <strong>Total Friends: </strong>{{model.stats.friends}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Total Games: </strong>{{model.stats.totalGames}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Games Won: </strong>{{model.stats.gamesWon}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Total Lost: </strong>{{model.stats.gamesLost}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Sign up date: </strong>{{model.stats.memberSince | date:'MMM dd, yyyy'}}
+                </li>
+            </ul>            
+
+        </div>
+    </div>
+</div>

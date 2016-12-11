@@ -5,8 +5,6 @@ module.exports = function() {
     var WidgetSchema = require("./widget.schema.server")();
     var Widget = mongoose.model("Widget", WidgetSchema);
 
-    var Page = require('mongoose').model('Page');
-
     var api = {
         createWidgetForPage: createWidgetForPage,
         findAllWidgetsForPage: findAllWidgetsForPage,

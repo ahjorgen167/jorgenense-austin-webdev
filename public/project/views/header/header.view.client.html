@@ -1,0 +1,50 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container" >
+    	<div class="row navbar-text" style="width: 100%">
+            <span ng-if="model.user">
+                <div class="col-xs-2 text-center" ng-controller="HeadingController">
+                    <span ng-click="goBack()" class="glyphicon glyphicon-chevron-left" title='Go back'></span>
+                    
+                </div>
+                <div class="col-xs-2 text-center">
+                    <a href="#/">
+                        <span class="glyphicon glyphicon-home" title='Home'></span>
+                    </a>
+                </div>        
+                    <div class="col-xs-2 text-center">
+                        <a href="#/player/{{model.user._id}}/friends">
+                            <span class="glyphicon glyphicon-search" title="Search players"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-2 text-center">
+                        <a href="#/player/{{model.user._id}}/game">
+                            <span class="glyphicon glyphicon-tower" title="Search open games"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-2 text-center">
+                        <a href="#/player/{{model.user._id}}">
+                            <span class="glyphicon glyphicon-user" title="My profile"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-2 text-center">
+                        hello, {{model.user.username}}
+                    </div>
+            </span>
+            <span ng-if="!model.user">
+                <div class="col-xs-6" ng-controller="HeadingController">                    
+                    <div class="text-left" ng-controller="HeadingController">
+                        <span ng-click="goBack()" class="glyphicon glyphicon-chevron-left"></span>
+                    </div>
+                </div>
+                <div class="col-xs-6" ng-controller="HeadingController">                    
+                    <div class="text-right">
+                        <a href="#/login">
+                            <span class="glyphicon glyphicon-log-in"></span>
+                        </a>
+                    </div>
+                </div>
+           	</span>
+
+        </div>
+    </div>
+</nav>

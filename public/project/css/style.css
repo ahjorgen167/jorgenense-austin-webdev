@@ -1,0 +1,222 @@
+input.form-control {
+    margin-bottom: 5px;
+}
+
+.navbar-header {
+    width:100%;
+    color:#77db3d;
+}
+
+body {
+    padding-top: 65px;
+    padding-bottom: 65px;
+}
+
+button {
+  background: none;
+  outline: none;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+.glyphicon {
+  cursor: pointer;
+  color: black;
+  pointer-events: all;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.wrapper .glyphicon {
+  background-color: white;
+  padding: 5px;
+  -moz-border-radius: 0 0 0 6px;
+  border-radius: 0 0 0 6px;
+  color: #006dcc;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.youtube-widget {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+}
+.youtube-widget iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+/*
+Navbar coloring - http://work.smarchal.com/twbscolor/css/e74c3cc0392becf0f1ffbbbc0
+*/
+.navbar-default {
+  background-color: #e74c3c;
+  border-color: #c0392b;
+}
+.navbar-default .navbar-brand {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #ffbbbc;
+}
+.navbar-default .navbar-text {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #ffbbbc;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #ffbbbc;
+  background-color: #c0392b;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #ffbbbc;
+  background-color: #c0392b;
+}
+.navbar-default .navbar-toggle {
+  border-color: #c0392b;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #c0392b;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ecf0f1;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #ecf0f1;
+}
+.navbar-default .navbar-link {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-link:hover {
+  color: #ffbbbc;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #ecf0f1;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffbbbc;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffbbbc;
+    background-color: #c0392b;
+  }
+}
+
+
+
+/*
+CSS FOR PLAYING CARDS
+*/
+
+.card {
+  position: relative;
+  float: left;
+  margin-right: 10px;
+  width: 150px;
+  height: 220px;
+  border-radius: 10px;
+  background: #fff;
+  -webkit-box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
+  box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
+}
+
+.card p {
+  text-align: center;
+  font: 100px/220px Georgia, Times New Roman, serif;
+}
+
+.card h4 {
+    text-align: center;
+    font: 28px/36px Georgia, Times New Roman, serif;
+}
+
+.stack {
+  background-image: url("http://www.brainjar.com/css/cards/graphics/cardback.gif");
+  border-color: #808080 #000000 #000000 #808080;
+  border-width: 1px;
+  border-style: solid;
+  color: #000000;
+  position: absolute;
+}
+
+
+.suitdiamonds:before, .suitdiamonds:after {
+  content: "♦";
+  color: #ff0000;
+}
+ 
+.suithearts:before, .suithearts:after {
+  content: "♥";
+  color: #ff0000;
+}
+ 
+.suitclubs:before, .suitclubs:after {
+  content: "♣";
+  color: #000;
+}
+ 
+.suitspades:before, .suitspades:after {
+  content: "♠";
+  color: #000;
+}
+
+
+div[class*='suit']:before {
+  position: absolute;
+  font-size: 35px;
+  left: 5px;
+  top: 5px;
+}
+ 
+div[class*='suit']:after {
+  position: absolute;
+  font-size: 35px;
+  right: 5px;
+  bottom: 5px;
+}
+
+.stack {
+  color: black;
+}
+
+
+.username {
+  background: #D4D4D4;
+  border-radius: 10px;
+}
+
+.message {
+  background: #D4D4D4;
+  border-radius: 10px;  
+}

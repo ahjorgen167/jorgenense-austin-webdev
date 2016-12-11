@@ -83,7 +83,6 @@ app.get('/auth/facebook/callback',
 
 
     function loggedin(req, res) {
-        console.log("hit here");
         res.send(req.isAuthenticated() ? req.user : '0');
     }
 

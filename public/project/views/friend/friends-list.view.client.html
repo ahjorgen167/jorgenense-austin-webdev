@@ -1,0 +1,42 @@
+<div ng-include src="'/project/views/header/header.view.client.html'"></div>
+
+<div class="row container-fluid visi">
+
+    <!-- SIDEBAR -->
+    <div ng-include src="'/project/views/header/friends-sidebar.view.client.html'"></div>
+
+
+    <!-- FORM -->
+    <div class="col-xs-12 col-sm-10">
+
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
+
+        <div class="input-group">
+            <input ng-model="searchText" type="text" class="form-control">
+            <span class="input-group-btn">
+                <a ng-click="model.searchUsername(searchText)" class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+            </span>
+        </div>    
+
+        <ul class="list-group">
+            <div ng-repeat="result in model.players">
+                <a href="#/player/{{model.userId}}/friends/{{result._id}}/">
+                    <li class="row col-xs-4 list-group-item">
+                        <div class="col-xs-2 pull-center text-center">
+                            <img ng-src="{{result.avatar}}" height="100%" width="36"/>
+                        </div>
+                        <div class="col-xs-2 text-center" style="position: relative; transform: translateY(50%);">
+                            {{result.username}}
+                        </div>                            
+                    </li>
+                </a>
+            </div>
+        </ul>
+
+
+</div>
+</div>

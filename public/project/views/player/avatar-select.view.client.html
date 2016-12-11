@@ -1,0 +1,27 @@
+<div ng-include src="'/project/views/header/header.view.client.html'"></div>
+
+<div class="input-group">
+    <input ng-model="searchText" type="text" class="form-control">
+    <span class="input-group-btn">
+        <a ng-click="model.search(searchText)" class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+    </span>
+</div>
+
+<div class="row container">
+    <div class="col-xs-4 col-s-6 col-10" ng-repeat="image in model.images">
+        <img ng-click="model.selectAvatar(image)"
+            ng-src="http://media0.giphy.com/media/{{image.id}}/giphy-tumblr.gif" class="img-responsive"/>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+            <p class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}/"><span class="glyphicon glyphicon-user"></span></a>
+            </p>
+    </div>
+</nav>
+
+

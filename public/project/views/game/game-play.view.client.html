@@ -1,0 +1,100 @@
+<div ng-include src="'/project/views/header/header.view.client.html'"></div>
+
+<div class="row container-fluid">
+
+    <!-- SIDEBAR -->
+    <div ng-include src="'/project/views/header/games-sidebar.view.client.html'"></div>
+
+
+    <!-- PLAYER 1 Deck -->
+
+            <div class="col-xs-12 col-sm-9">
+                <div class="row">
+                    <div class="row" style="margin-bottom: 18px">
+
+                        <div class="col-xs-4 col-sm-3">
+                            <div ng-if="model.game.player1Action.deck.length > 0">
+                                <div ng-click="model.revealCard(model.game.player1Action)">
+                                        <div class="card stack">
+                                        <h4 class="text-center">{{model.game.player1Action.deck.length}}<br>remaining<br>cards</h4>
+                                        
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                            
+                        <div class="col-xs-4 col-sm-3">
+                            <div ng-if="model.game.player1Action.currentMove">
+                                <div class="card suit{{model.game.player1Action.currentMove.suit | lowercase}}" >
+                                  <p>{{model.game.player1Action.currentMove.rank}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-4 col-sm-3 people-cards" style="border: 1px solid grey; margin-left:10px">
+                            <div class="row">
+                                <div class="profile-image" style="float:left;">
+                                    <img ng-src="{{model.game.player1.avatar}}" class="img-thumbnail"/>
+                                </div>
+                                <div class="profile-info">
+                                    <h3 div class="company text-center">{{model.game.player1.username}}</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" ng-if="model.game.player2Action">
+
+                        <div class="col-xs-4 col-sm-3 people-cards" style="border: 1px solid grey; margin-left:10px">
+                            <div class="row">
+                                <div class="profile-image" style="float:left;">
+                                    <img ng-src="{{model.game.player2.avatar}}" class="img-thumbnail"/>
+                                </div>
+                                <div class="profile-info">
+                                    <h3 div class="company text-center">{{model.game.player2.username}}</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-4 col-sm-3">
+                            <div ng-if="model.game.player2Action.currentMove">
+                                <div class="card suit{{model.game.player2Action.currentMove.suit | lowercase}}" >
+                                  <p>{{model.game.player2Action.currentMove.rank}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-4 col-sm-3">
+                            <div ng-if="model.game.player1Action.deck.length > 0">
+                                <div ng-click="model.revealCard(model.game.player2Action)">
+                                        <div class="card stack">
+                                        <h4 class="text-center">{{model.game.player2Action.deck.length}}<br>remaining<br>cards</h4>
+                                        
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="hidden-xs col-sm-1">
+                <ul class="list-group" style="border-left: 1px solid #eee;">
+                    <h5 class="text-center">Move History</h5>
+                    <div ng-repeat="move in model.game.moves">
+                        <li class="list-group-item text-center" style="border:none;">
+                            <div ng-style="move.player1Won && {'font-weight': 'bold'}">
+                                {{model.game.player1.username}}:{{move.player1Move}}
+                            </div>
+                            <div ng-style="move.player2Won && {'font-weight': 'bold'}">
+                                {{model.game.player2.username}}:{{move.player2Move}}
+                            </div>
+                        </li>
+                    </div>
+                </ul>  
+            </div>          
+</div>

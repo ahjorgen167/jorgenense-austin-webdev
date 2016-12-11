@@ -1,0 +1,25 @@
+<div ng-include src="'/project/views/header/header.view.client.html'"></div>
+
+<div class="container">
+
+    <form>
+        <div class="input-group text-center row container">
+                <div class="col-xs-6">
+                    <div ng-if="model.user.avatar">
+                        <img id="avatar" ng-src="{{model.user.avatar}}" class="img-thumbnail" height="70" width="70">
+                    </div>
+                </div>
+                <a href="#/player/{{model.user._id}}/imagesearch" class="btn btn-default col-xs-6" type="button" style="position: relative; transform: translateY(50%);">
+                Search for avatar image
+                </a>
+        </div>        
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input ng-model="model.user.username" type="text" class="form-control" id="username" placeholder="username">
+        </div>
+    </form>
+    <p></p>
+
+    <a class="btn btn-danger btn-block" ng-click="model.logout()">Logout</a>
+    <a class="btn btn-warning btn-block" ng-click="model.unregisterUser()">Delete</a>
+</div>

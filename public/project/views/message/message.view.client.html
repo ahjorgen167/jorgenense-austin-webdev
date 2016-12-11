@@ -1,0 +1,76 @@
+<div ng-include src="'/project/views/header/header.view.client.html'"></div>
+
+<div class="row container-fluid visi">
+
+    <!-- FORM -->
+    <div class="col-xs-12 col-sm-10">
+    
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="col-xs-6 people-cards">
+                        <!--<div class="col-xs-4 col-sm-3 people-cards" style="border: 1px solid grey; margin-left:10px">-->
+            <div class="row">
+                <div class="col-xs-2 col-xs-offset-4">
+                    <div class="profile-image" style="float:left;">
+                        <img ng-src="{{model.friend.avatar}}" class="img-thumbnail"/>
+                    </div>
+                    <div class="profile-info">
+                        <h3 div class="company text-center">{{model.friend.username}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-2 col-xs-offset-4">
+                    <div class="profile-image" style="float:right;">
+                        <img ng-src="{{model.user.avatar}}" class="img-thumbnail"/>
+                    </div>
+                    <div class="profile-info">
+                        <h3 div class="company text-center">{{model.user.username}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="input-group">
+                <input ng-model="currentMessage" type="text" class="form-control">
+                <span class="input-group-btn">
+                    <a ng-click="model.sendMessage(currentMessage)" class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-triangle-right"></span>
+                    </a>
+                </span>
+            </div>    
+
+            <ul class="list-group">
+                <div ng-repeat="message in model.messages">
+                    <li class="col-xs-12 list-group-item">
+                        <div ng-if="model.playerId==message.to" class="text-left">
+                            {{message.message}}
+                            <img ng-src="{{model.friend.avatar}}" class="col-xs-1"/>
+                            <div class="pull-right">
+                            Sent {{message.dateSent | date : 'MM d, yy - h:m a'}}
+                            </div>
+                        </div>
+                        <div ng-if="model.friendId==message.to" class="text-right">
+                            <div class="pull-left">
+                            Sent {{message.dateSent | date : 'MM d, yy - h:m a'}}
+                            </div>
+                            {{message.message}}
+                            <img ng-src="{{model.user.avatar}}" class="col-xs-1 pull-right"/>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,54 @@
+<div ng-include src="'/project/views/header/header.view.client.html'"></div>
+
+<div class="row container-fluid visi">
+
+    <!-- SIDEBAR -->
+    <div ng-include src="'/project/views/header/games-sidebar.view.client.html'"></div>
+
+    <!-- FORM -->
+    <div class="col-xs-12 col-sm-10">
+
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
+
+        <div class="input-group">
+            <a ng-click="model.createGame()" class="btn btn-default" type="button">
+                Create new game!
+            </a>
+        </div>
+
+        <div class="input-group">
+            <input ng-model="searchText" type="text" class="form-control">
+            <span class="input-group-btn">
+                <a ng-click="model.searchGamesByUsername(searchText)" class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+            </span>
+        </div>
+
+        <div class="list-group">
+            <div ng-repeat="player in model.players">
+                <div ng-repeat="game in player.games">
+                    <div ng-if="!game.player2Action && model.playerId">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-3 pull-center text-center">
+                                    <img ng-src="{{player.avatar}}" height="100%" width="36"/>
+                                </div>
+                                <div class="col-xs-3 text-center">
+                                    Open game with {{player.username}}
+                                </div>
+                                <div class="col-xs-3 text-center">
+                                    <span class="glyphicon glyphicon glyphicon-plus-sign" ng-click="model.joinGame(game)"></span>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+</div>

@@ -1,126 +1,295 @@
 MongoDB:
-"C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe"
+"C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe" cs5610fall2016
+
+******* WEB DEVELOPMENT - Project Requirements ************************
+    DESCRIPTION
+Here are the minimum requirements for this course's project. You will identify at least 2 types of users that will use your application, e.g., a student and a faculty user. Implement a data model and user interface that will support a set of use cases and features listed in this document. If you can think of an alternative set of features we can negotiate swapping some of the features listed here for some of yours. If you have a novel project idea that escapes the confines of the requirements listed here, reach out to me and we can agree on an alternate set of requirements tailored to your particular project. For the most part I expect most of you to fall within the boundaries of these general requirements.
+    ACTORS
+Identify at least 2 human actors that would use your Website. Example actors would be
+Online store application: Sellers, buyers
+Online project management: Developers, quality assurance, project managers, business analysts
+Online restaurant: Cooks, waiters, delivery, receptionists, manager
+Online sports: Team player, coach, director, spectator
+Online fishing journal: Fisherman, partner, boat captain
+Online university: Students, faculty, staff
+If you can only think of a single type of user, then the second actor can simply be an admin actor that can administer all the entities of the Website including other users, domain objects, and all relations. Each actor should have their dedicated user interface, although they might share some common use cases and interfaces.
+
+    REQUIRED DATA MODEL
+Your data model should represent the following entities and relationships
+User - allows capturing data such as username, password, date of birth, first name, last name, phone, address, email, and other personal information. There should be at least two types of users
+Domain object - represents data for the particular domain you chose, e.g., recipes, sports team, tasks, fishing trips, products, categories, movies, songs. There should be at least two types of domain objects
+User to user relationship - capture an association relation between users, e.g., user follows a user, a user sends a message to another user
+User to domain object relationship - capture an association relationships between users and a domain objects, e.g., user creates a recipe, user likes a movie, user reviews an article
+Domain to domain relationship - represent association relationships between domain objects, e.g., a category has many products, a fishing trip has many fish, a team has many players, a blog has many posts, a portfolio has many stocks
+One to many relationships - represent one to many relationships such as fishing trip has many fish, a team has many players, a product has many reviews, a blog post has comments
+Many to many relationships - represent many to many relationships such as a student can be in many sections and a section can have many students, a developer can be in a project and a project can have many developers, a user reviews many products and a product is reviewed by many users
 
 
-TODOs
-Implement PassportJS Facebook Strategy
-In user.schema.server.js, add a subdocument to capture the user's facebook identity.
+Here's a generic UML diagram capturing the user, domain objects, and several types of relationships. Use this as a guide to create your own data model
+
+Here are a couple more examples data models. Click to expand.
 
 
-var UserSchema = mongoose.Schema({
-    facebook: {
-        id:    String,
-        token: String
-    }
-});
 
 
-In user.model.server.js, add a findUserByFacebookId API to retrieve a user by their facebook ID. Implement in a function of the same name
 
 
-var api = {
-    findUserByFacebookId: findUserByFacebookId,
-};
 
-function findUserByFacebookId(facebookId) {
-    return User.findOne({'facebook.id': facebookId});
-}
-
-
-In login.view.client.html, add a facebook login button referencing a Web service configured to login the user using facebook
-
-
-<a href="/auth/facebook" class="btn btn-primary btn-block">
-    <span class="fa fa-facebook"></span>
-    Facebook
-</a>
+Feature Requirements
+The following set of features are required. You can provide various features in a single Web page or decide to spread the feature across several pages. You are free to layout the pages and implement navigation any which way you want as long as you implement the features below. Pages must be phone and tablet friendly.
+Home page - this will be the landing page of your project. It should look spectacular. I should be proud to share the URL with colleagues. The purpose of the Website should be clear
+Login / Register - allow users to register and login. Users should be able to use the Web site without login in. Only when accessing private or sensitive information should the application force users to login. Or if the Web application needs to know the identity of the user to execute an action
+Profile - allow users to edit personal information and navigate to objects related to the user, e.g., users they are following, domain objects they are related to, e.g., fishing trips they created, fish they caught, products they bought, sports team they are following, articles they wrote. Profiles can have a public and a private version
+Search / Search Results - allow users to search for domain objects. Results are shown as a summarized list. Clicking on a search result navigates to a details page for the domain object. Retrieve data from a public Web service
+Details Page - shows a detailed view of a domain object including any relationships it has with other objects, e.g., a product shows a detail description, rating, and reviews by users. Clicking on the user that posted the review navigates to that user's profile. Retrieve details from a public Web service
+Social Networking - provide social networking features such as discovering other users, following other users, replying to other's comments, sharing a subset of profile/personal information, inviting other users
+Web Service - use a public Web service such as Yelp, Amazon, Best Buy, Walmart, and Weather.com, to implement the search and details page. Search for public Web services from services such as http://www.programmableweb.com
+Deliverables
 
 
-In user.service.server.js, load the passport facebook strategy
+Create a 10 to 20 minute video on YouTube where you present and demonstrate your project. Submit a link to your video. Your video should include the following:
+1 minute introduction
+1 minute problem statement
+1 minute solution statement
+1 minute architecture and technology stack
+1 minute data model
+10 to 15 minute demo: briefly show how to use your Web application and highlight the various features
+Your project must be accessible from your home page. Host your project on a hosting service of your choice. Submit a link to your home page and your project
+Upload your project's source code to a source control repository such as Github or Bitbucket. Submit a link to your source code repository and make sure it is accessible to the instructors
+Rubric
+This is the rubric used in the previous semester. Use this as a checklist 
 
 
-var passport         = require('passport');
-var FacebookStrategy = require('passport-facebook').Strategy;
-
-
-Create a Web service that uses passport.authenticate() to delegate authentication to facebook
-
-
-app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-
-
-Facebook will call back to a URL configured at their developer website, e.g.,
-
-
-app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', {
-        successRedirect: '/#/user',
-        failureRedirect: '/#/login'
-}));
-
-
-From facebook's developer's Website, configure a client ID (application ID), client secret, and callback URL. Configure these in the following environment variables locally and on OpenShift:
-
-
-FACEBOOK_CLIENT_ID,
-FACEBOOK_CLIENT_SECRET,
-FACEBOOK_CALLBACK_URL
-
-
-These can be loaded from the service into a local object as follows:
-
-
-var facebookConfig = {
-    clientID     : process.env.FACEBOOK_CLIENT_ID,
-    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
-    callbackURL  : process.env.FACEBOOK_CALLBACK_URL
-};
-
-
-Use the facebook configuration to register a middle tier that will handle facebook related requests
-
-
-passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
-
-
-When Facebook calls back, it will pass a token and profile information that can be cached in the data model keyed off of facebook's profile ID. Use the ID to look up the user in the database. If the user is not there, store the as a new user, and logged them in. If the user is already there, then don't create them and just logged them in.
-
-
-function facebookStrategy(token, refreshToken, profile, done) {
-    developerModel
-        .findUserByFacebookId(profile.id)
-
-
-Implement Client Side Validation and Error Handling
-Use angular validation and controller logic to enforce the following form element requirements. Highlight invalid fields and display an error message below the invalid field. Display an error alert box at the top of the view styled as a bootstrap alert box, e.g., class="alert alert-danger". Only display error messages after a form has been submitted. Turn off autocorrect and auto capitalization for username field in the login view.
-
-
-View
-Field
-Constraint
-Login
-username, password
-required
+Functional
 Register
-username, password, verify password
-required
-password, verify password
-must match
-New Website
-name
-required
-Edit Website
-name
-required
-New Page
-name
-required
-Edit Page
-name
-required
-New Widget
-name
-required
-Edit Widget
-name
-required
+page
+allows registering with username/password, e.g., jose/jose
+Login
+page
+allows login in with same username/password, e.g., jose/jose
+
+
+stays logged in even after page reload (maintains session)
+Home Page
+page
+shows a nice/pleasing landing page for the home page. Short description of project. Should know what it's about from home page, or link. can include/merge with search/results page
+Search
+page
+allows searching with either single input field or dropdowns. navigates to or shows results page after searching. can be in same page as search results. 3rd party API is mandatory for grads (cs5610)
+Search Results
+page
+shows summary results, e.g., thumbnails, titles, links to details page
+Details
+page
+shows details from links from search results page. aggregates details data from 3rd party API (grads) plus local database, e.g., comments, ratings, reviews, etc.
+Profile page
+
+
+shows current values
+
+
+
+
+can update
+Second User
+
+
+provides different ui
+Relationships
+User/Domain
+e.g., review|comment
+
+
+User/User
+e.g., follows|message|group
+Back
+button
+remembers state/results when you press back button
+Styling
+White Space
+
+
+padding, margins, not too much, not too little, no unnecessary
+Wrapping
+
+
+content should not wrap unintentionally
+Responsive
+desktop
+resize window slowly on each page, should still be usable, look acceptable
+
+
+phone
+each page, should still be usable, look acceptable
+Pinch/Zoom
+
+
+shouldnt be able to pinch and zoom
+Scrollbars
+No Horizontal
+there shouldnt be horizontal scrollbars, except for images, or responsive table
+
+
+Not Nested
+there shouldnt be nested scrollbars, except maybe responsive tables, images, etc.
+Alignment
+
+
+elements should line up, not jagged
+Consistency
+
+
+fonts/colors/layout etc should be consistent
+Contrast
+
+
+should be able to read text against background
+Pleasant
+
+
+pages should be generally pleasant
+All Angular Controllers
+event handlers at top
+
+
+all event handlers must be declared at top of controller
+vm, !$scope
+
+
+controllers should declare local variable to which all data and event handlers are bound to
+model
+
+
+declare model in config
+
+
+
+
+use model in templates
+init()
+
+
+all initialization should happen in an init function
+!$http
+
+
+controllers should not access server data directly, should use services instead
+promises
+
+
+service functions should be asynchronous and handled with promises
+All Angular Services
+declare API at top
+
+
+apis should be declared at the top
+uses promises
+
+
+$http calls should be returned immediatedly
+POST
+
+
+to create
+GET
+
+
+to get all
+GET
+
+
+to get one
+PUT
+
+
+to update
+DELETE
+
+
+to remove
+REST
+
+
+all URLs should use REST syntax
+All Web Services
+declare API at top
+
+
+apis should be declared at the top
+uses promises
+
+
+$http calls should be returned immediatedly
+POST
+
+
+to create
+GET
+
+
+to get all
+GET
+
+
+to get one
+PUT
+
+
+to update
+DELETE
+
+
+to remove
+REST
+
+
+all URLs should use REST syntax
+All Schemas
+User to User
+
+
+
+
+User to Domain
+
+
+
+
+Domain to Domain
+
+
+
+
+All Model
+API at top
+
+
+
+
+Create
+
+
+
+
+Find One
+
+
+
+
+Find All
+
+
+
+
+Update
+
+
+
+
+Delete
+
+
+
+
+
+

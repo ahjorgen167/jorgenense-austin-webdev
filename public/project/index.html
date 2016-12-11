@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="WebAppMaker">
 <head>
+    <link href="../css/bootstrap.css" rel="stylesheet"/>
+    <link href="../css/jquery-ui.css" rel="stylesheet"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-route.min.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <!-- VIEWS -->
+    <script src="views/header/header.controller.client.js"></script>
+    <script src="views/player/player.controller.client.js"></script>
+    <script src="views/friend/friend.controller.client.js"></script>
+    <script src="views/message/message.controller.client.js"></script>
+    <script src="views/game/game.controller.client.js"></script>
+
+    
+    <!-- SERVICES -->
+    <script src="services/player.service.client.js"></script>
+    <script src="services/move.service.client.js"></script>
+    <script src="services/message.service.client.js"></script>
+    <script src="services/game.service.client.js"></script>
+    <script src="services/action.service.client.js"></script>
+
+    <link rel='stylesheet' href='../css/textAngular.css'>
+    <script src='../js/textAngular-rangy.min.js'></script>
+    <script src='../js/textAngular-sanitize.min.js'></script>
+    <script src='../js/textAngular.min.js'></script>
+    
+    <link href="css/style.css" rel="stylesheet"/>
     <meta charset="UTF-8">
-    <title>Project Home Page</title>
+    <title>AJorgensen - Assignment</title>
 </head>
 <body>
-    <h1>Project Home Page</h1>
+    <div ng-view>
+    </div>
 </body>
 </html>

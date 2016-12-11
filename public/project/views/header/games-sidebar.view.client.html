@@ -1,0 +1,24 @@
+<div class="sidebar-left col-sm-2 hidden-xs" style="height:20em">
+    <ul class="list-group text-center">
+        <div ng-repeat="game in model.user.games">
+            <div ng-if="!game.player2">
+                <li class="list-group-item">
+                    <div class="form-group">
+                        <a href="#/player/{{model.playerId}}/game/{{game._id}}/">
+                            Waiting for challenger
+                        </a>
+                    </div>
+                </li>
+            </div>            
+            <div ng-if="game.player2">
+                <li class="list-group-item">
+                    <div class="form-group">
+                        <a href="#/player/{{model.playerId}}/game/{{game._id}}/">
+                            {{game.player1.username}} vs {{game.player2.username}}
+                        </a>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </ul>
+</div>
