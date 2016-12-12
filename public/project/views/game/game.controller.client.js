@@ -11,6 +11,7 @@
         vm.revealCard = revealCard;
         vm.error = null;
         vm.watchMode = false;
+        vm.deleteGame = deleteGame;
 
         var gameInterval = setInterval(initGameState, 5000);
 
@@ -22,8 +23,16 @@
                 .findGameById(vm.gameId)
                 .success(function(game){
                     vm.game = GameService.updateGameState(game);
+                    if(vm.game.status == "COMPLETE"){
+                        var winner = '';
+                        if(vm.game.winnername){
+                            winner = vm.game.winnername;
+                        } else {
+                            winner = vm.game.winner.username;
+                        }
+                        vm.success = "CONGRATS! " + winner + " wins the game!";
+                    }
                     if(vm.game.updated){
-                        console.log("going to update?");
                         vm.game = game;
                         GameService
                             .updateGame(game._id, game)
@@ -35,6 +44,7 @@
                 .error(function(error){
                     console.log(error);
                 });
+
         }
 
         function init(){
@@ -68,6 +78,22 @@
         $scope.$on("$destroy", function(){
             clearInterval(gameInterval);
         });
+
+
+        function deleteGame(gameId){
+            GameService
+                .deleteGame(gameId)
+                .success(function(response){
+                    var url = "/player/" + vm.playerId + "/game/";
+                    $location.url(url);
+                })
+                .error(function(error){
+                    console.log(error);
+                    return;
+                });
+        }
+
+
     }
 
     function GameSearchController($location, $routeParams, GameService, PlayerService, ActionService) {

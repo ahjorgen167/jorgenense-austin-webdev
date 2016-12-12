@@ -23,7 +23,7 @@ module.exports = function(app, models) {
     function findMessagesByPlayers(req, res) {
         var player1Id = req.params.pid;
         var player2Id = req.params.pid2;
-        if(player2Id){            
+        if(player2Id != 'null'){            
             messageModel
                 .findMessagesByPlayers(player1Id, player2Id)
                 .then(function(messages){

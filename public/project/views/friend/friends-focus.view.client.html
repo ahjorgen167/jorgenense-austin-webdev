@@ -17,6 +17,9 @@
                 </div>
                 <div class="col-xs-4 col-sm-3 col-xs-1-offset text-center username" >
                     <h1>{{model.friend.username}}</h1>
+                    <div ng-if="model.friend.admin">
+                    (admin)
+                    </div>
                 </div>
             </div>
         </div>
@@ -55,5 +58,54 @@
             </ul>            
 
         </div>
+        <br>
+        <div ng-if="model.user.admin">
+            <div class="text-center">
+                <h2>Admin Options</h2>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-3 col-sm-2 text-center col-sm-offset-1">
+                        <span class="glyphicon glyphicon-plus-sign"  ng-click="model.showAllFriends()" title="Show all of {{model.user.username}}'s friends"  style="color: red;"></span>
+                    </div>
+                    <div class="col-xs-3 col-sm-2 text-center">
+                        <span class="glyphicon glyphicon-knight" ng-click="model.showAllGames()" title="Show all of {{model.user.username}}'s games"  style="color: red;"></span>
+                    </div>
+                    <div class="col-xs-3 col-sm-2 text-center">
+                        <span class="glyphicon glyphicon-envelope" ng-click="model.showAllMessages()" title="Show all of {{model.user.username}}'s messages"  style="color: red;"></span>
+                    </div>
+                    <div class="col-xs-3 col-sm-2 text-center">
+                        <span class="glyphicon glyphicon-remove" ng-click="model.deleteThisUser()" title="Delete {{model.user.username}}"  style="color: red;"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row col-xs-10 col-sm-12">
+                    <ul class="list-group">
+                        <div ng-repeat="friend in model.friends">
+                            <li class="list-group-item">
+                                {{friend.username}}
+                                    <span class="badge pull-right" style="color:red"><span class="glyphicon glyphicon-remove"  title="Remove friend relationship from this user" ng-click="model.deleteFriendRelation(friend._id)"></span></span>
+                            </li>
+                        </div>
+                        <div ng-repeat="message in model.messages">
+                            <li class="list-group-item">
+                                TO: {{message.to}} <br>
+                                TEXT: {{message.message}}
+                                    <span class="badge pull-right" style="color:red"><span class="glyphicon glyphicon-remove"  title="Delete this message" ng-click="model.deleteMessage(message._id)"></span></span>
+                            </li>
+                        </div>
+                        <div ng-repeat="game in model.games">
+                            <li class="list-group-item">
+                                {{game.player1.username}} vs {{game.player2.username}} <br>
+                                STARTED: {{game.dateStarted | date : 'MMMM d, yyyy'}}
+                                    <span class="badge pull-right" style="color:red"><span class="glyphicon glyphicon-remove"  title="Delete this game" ng-click="model.deleteGame(game._id)"></span></span>
+                            </li>
+                        </div>
+                    </ul>            
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

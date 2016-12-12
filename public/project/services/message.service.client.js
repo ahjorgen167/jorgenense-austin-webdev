@@ -20,7 +20,7 @@
         }
 
         function getMessagesForUser(playerId){
-            var url = "/api/message/" + playerId + "/player/";
+            var url = "/api/message/" + playerId + "/player/null";
             return $http.get(url);
         }
 

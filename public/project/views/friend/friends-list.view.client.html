@@ -31,7 +31,15 @@
                         </div>
                         <div class="col-xs-2 text-center" style="position: relative; transform: translateY(50%);">
                             {{result.username}}
-                        </div>                            
+                        </div>
+                        <div class="pull-right">
+                            <div ng-if="result.isFriend">
+                                <span class="badge"><span class="glyphicon glyphicon-ok" style="color: red;" title="Friend"></span></span>
+                            </div>
+                            <div ng-if="result.admin">
+                                <span class="badge"><span class="glyphicon glyphicon-star" style="color: yellow;" title="Admin"></span></span>
+                            </div>           
+                        </div>
                     </li>
                 </a>
             </div>

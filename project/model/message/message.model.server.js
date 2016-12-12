@@ -92,7 +92,7 @@ module.exports = function() {
 
     function deleteMessage(messageId) {
         var deferred = q.defer();
-        Message.remessage({_id: messageId}, function(err, message){
+        Message.remove({_id: messageId}, function(err, message){
             if (err) {
                 deferred.reject(err);
             }

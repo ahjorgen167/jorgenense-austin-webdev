@@ -83,9 +83,11 @@
             if(game.player2Action.deck.length == 0){
                 game.status = "COMPLETE";
                 game.winner = game.player1._id;
+                game.winnername = game.player1.username;
             } else if (game.player1Action.deck.length == 0){
                 game.status = "COMPLETE";
                 game.winner = game.player2._id;
+                game.winnername = game.player2.username;
             }
             return game;
         }

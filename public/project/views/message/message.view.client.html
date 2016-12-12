@@ -11,32 +11,36 @@
 
 
     <div class="container-fluid">
-        <div class="col-xs-6 people-cards">
-                        <!--<div class="col-xs-4 col-sm-3 people-cards" style="border: 1px solid grey; margin-left:10px">-->
-            <div class="row">
-                <div class="col-xs-2 col-xs-offset-4">
-                    <div class="profile-image" style="float:left;">
-                        <img ng-src="{{model.friend.avatar}}" class="img-thumbnail"/>
-                    </div>
-                    <div class="profile-info">
-                        <h3 div class="company text-center">{{model.friend.username}}</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6">
-            <div class="row">
-                <div class="col-xs-2 col-xs-offset-4">
-                    <div class="profile-image" style="float:right;">
-                        <img ng-src="{{model.user.avatar}}" class="img-thumbnail"/>
-                    </div>
-                    <div class="profile-info">
-                        <h3 div class="company text-center">{{model.user.username}}</h3>
+        <a href="#/player/{{model.playerId}}/friends/{{model.friendId}}/">
+            <div class="col-xs-6 people-cards">
+                            <!--<div class="col-xs-4 col-sm-3 people-cards" style="border: 1px solid grey; margin-left:10px">-->
+                <div class="row">
+                    <div class="col-xs-2 col-xs-offset-4">
+                        <div class="profile-image" style="float:left;">
+                            <img ng-src="{{model.friend.avatar}}" class="img-thumbnail"/>
+                        </div>
+                        <div class="profile-info">
+                            <h3 div class="company text-center">{{model.friend.username}}</h3>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
+        </a>
+        <a href="#/player/{{model.playerId}}">
+            <div class="col-xs-6">
+                <div class="row">
+                    <div class="col-xs-2 col-xs-offset-4">
+                        <div class="profile-image" style="float:right;">
+                            <img ng-src="{{model.user.avatar}}" class="img-thumbnail"/>
+                        </div>
+                        <div class="profile-info text-center">
+                            <h3 div class="company">{{model.user.username}}</h3>
+                            <h6>(you)</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
     </div>
     <div class="container-fluid">
         <div class="row">

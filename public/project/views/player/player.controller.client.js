@@ -87,22 +87,20 @@
         var vm = this;
         vm.register = register;
 
-
-        function register(username, password, password2) {
-            if(!username){
+        function register(newUser) {
+            if(!newUser.username){
                 vm.error = "You must include a username";
                 return;
             }
 
-            if(password != password2 || !password || !password2){
+            if(newUser.password != newUser.password2 || !newUser.password || !newUser.password2){
                 vm.error = "Your passwords don't match";
                 return;
             }
-
+            delete newUser.password2;
             PlayerService
-                .register(username, password)
-                .then(
-                    function(response) {
+                .register(newUser)
+                .then(function(response) {
                         var player = response.data;
                         if(player) {
                             $rootScope.user = player;

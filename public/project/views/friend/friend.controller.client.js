@@ -4,7 +4,7 @@
         .controller("FriendSearchController", FriendSearchController)
         .controller("FriendFocusController", FriendFocusController);
 
-    function FriendFocusController($routeParams, $location, PlayerService, GameService, ActionService) {
+    function FriendFocusController($routeParams, $location, PlayerService, GameService, ActionService, MessageService) {
         var vm = this;
         vm.error = null;
         vm.userId = $routeParams["uid"];
@@ -155,6 +155,146 @@
                     return;
                 });
         }
+
+        vm.showFriends = false;
+        vm.showGames = false;
+        vm.showMessages = false;
+        vm.hideAll = hideAll
+        vm.hideAllFriends = hideAllFriends;
+        vm.hideAllGames = hideAllGames;
+        vm.hideAllMessages = hideAllMessages;
+        vm.showAllFriends = showAllFriends;
+        vm.showAllGames = showAllGames;
+        vm.showAllMessages = showAllMessages;
+        function hideAll(){
+            vm.hideAllFriends();
+            vm.hideAllGames();
+            vm.hideAllMessages();
+        }
+
+        function hideAllFriends(){
+            vm.friends = [];
+            vm.showAllFriends = false;
+        }
+
+        function hideAllGames(){
+            vm.games = [];
+            vm.showGames = false;
+        }
+
+        function hideAllMessages(){
+            vm.messages = [];
+            vm.showMessages = false;
+        }
+
+        function hideAll(){
+            vm.hideAllMessages();
+            vm.hideAllFriends();
+            vm.hideAllGames();
+        }
+
+        function showAllFriends(){
+            if(!vm.showFriends){
+                vm.hideAll();
+                vm.friends = vm.friend.friends;
+                vm.showFriends = true;
+            } else {
+                vm.hideAllFriends();
+            }
+        }
+
+        function showAllGames(){
+            if(!vm.showGames){
+                vm.hideAll();
+                vm.games = vm.friend.games;
+                vm.showGames = true;
+            } else {
+                vm.hideAllGames();
+            }
+        }
+
+        function showAllMessages(){
+            if(!vm.showMessages){
+                vm.hideAll();
+                MessageService
+                    .getMessagesForUser(vm.friendId)
+                    .success(function(messages){
+                        vm.messages = messages;
+                    })
+                    error(function(response){
+                        console.log(response);
+                    })
+                vm.showMessages = true;
+            } else {
+                vm.hideAllMessages();
+            }
+        }
+        vm.deleteThisUser = deleteThisUser;
+        function deleteThisUser(){
+            PlayerService
+                .deletePlayer(vm.friendId)
+                .success(function(response){
+                    $location.url("/player/" + vm.user._id + "/friends/")
+                })
+                .error(function(response){
+                    console.log(error);
+                });
+        }
+
+        vm.deleteMessage = deleteMessage;
+        function deleteMessage(messageId){
+            for(var i = 0; i < vm.messages.length; i++){
+                var message = vm.messages[i];
+                if(message._id == messageId){
+                    vm.messages.splice(i,1);
+                }
+            }
+            MessageService
+                .deleteMessage(messageId)
+                .success(function(response){
+                    $location.url("/player/" + vm.user._id + "/friends/" + vm.friendId)
+                })
+                .error(function(error){
+                    console.log(error);
+                });
+        }
+
+        vm.deleteFriendRelation = deleteFriendRelation;
+        function deleteFriendRelation(relationId){
+            for(var i = 0; i < vm.friend.friends.length; i++){
+                var friend = vm.friend.friends[i];
+                if(friend._id == relationId){
+                    vm.friend.friends.splice(i, 1);
+                }
+            }
+            PlayerService
+                .updatePlayer(vm.friend)
+                .success(function(response){
+                    $location.url("/player/" + vm.user._id + "/friends/" + vm.friendId)
+                })
+                .error(function(error){
+                    console.log(error);
+                });
+        }
+
+        vm.deleteGame = deleteGame;
+        function deleteGame(gameId){
+            for(var i = 0; i < vm.games.length; i++){
+                var game = vm.games[i];
+                if(game._id == gameId){
+                    vm.games.splice(i,1);
+                }
+            }
+            GameService
+                .deleteGame(gameId)
+                .success(function(response){
+                    $location.url("/player/" + vm.user._id + "/friends/" + vm.friendId)
+                })
+                .error(function(error){
+                    console.log(error);
+                });
+
+        }
     }
 
     function FriendSearchController($routeParams, $location, PlayerService) {
@@ -188,7 +328,7 @@
                 .updatePlayer(vm.user)
                 .success(function(response){
                     var url = "/player/" + vm.user._id + "/friends/";
-                    $location.url()
+                    $location.url(url)
                 })
                 .error(function(error){
                     console.log(error);
@@ -199,6 +339,17 @@
             PlayerService
                 .findPlayersByUsername(username)
                 .success(function(players){
+                    for(var i=0; i < players.length; i++){
+                        var player =players[i];
+                        for(var j=0; j < vm.user.friends.length; j++){
+                            var friend = vm.user.friends[j];
+                            if(friend._id == player._id){
+                                player.isFriend = true;
+                                break;
+                            }
+                        }
+                    }
+
                     vm.players = players
                 })
                 .error(function(error){

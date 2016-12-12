@@ -1,7 +1,7 @@
 <div class="sidebar-left col-sm-2 hidden-xs" style="height:20em">
     <ul class="list-group text-center">
         <div ng-repeat="game in model.user.games">
-            <li class="row list-group-item text-left">
+            <li class="row list-group-item text-left" ng-if="game.status != 'COMPLETE'">
                 <div ng-if="!game.player2">
                     <a href="#/player/{{model.playerId}}/game/{{game._id}}/">
                         Waiting for challenger

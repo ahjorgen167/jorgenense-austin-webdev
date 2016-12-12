@@ -54,7 +54,7 @@ module.exports = function() {
 
         Game
             .findById(gameId)
-            .populate('player1 player2 player1Action player2Action moves')
+            .populate('player1 player2 player1Action player2Action moves winner')
             .exec(function(err, game){
                 if (err) {
                     deferred.reject(err);

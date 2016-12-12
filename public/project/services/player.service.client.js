@@ -22,12 +22,8 @@
         };
         return api;
 
-        function register(username, password) {
-            var user = {
-                username: username,
-                password: password
-            };
-            return $http.post("/api/gameregister", user);
+        function register(player) {
+            return $http.post("/api/gameregister", player);
         }
 
         function logout(player) {
@@ -57,11 +53,12 @@
             return $http.get(url);
         }
 
-        function createPlayer(username, password) {
-            var player = {
-                username: username,
-                password: password
-            };
+        function createPlayer(player) {
+//            var player = {
+//                username: username,
+//                password: password
+//            };
+            console.log(player);
             return $http.post("/api/player", player);
         }
 
