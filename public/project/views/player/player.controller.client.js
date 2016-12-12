@@ -124,7 +124,7 @@
 
         vm.logout = logout;
         vm.updatePlayer = updatePlayer;
-        vm.unregisterPlayer = unregisterPlayer;
+        vm.deletePlayer = deletePlayer;
         function logout() {
             $rootScope.user = null;                        
             $location.url("/");
@@ -135,6 +135,7 @@
                 .findPlayerById(playerId)
                 .success(function(player){
                     if(player != null) {
+                        delete player.password;
                         vm.user = player;
                     } else {
                         vm.error = "If this message appears, something went wrong!";
@@ -147,9 +148,9 @@
         }
         init();
 
-        function updatePlayer() {
+        function updatePlayer(user) {
             PlayerService
-                .updatePlayer(vm.user)
+                .updatePlayer(user)
                 .success(function(response){
                     $location.url("/player/" + vm.user._id);
                 })
@@ -158,7 +159,8 @@
                 });                
         }
         
-        function unregisterPlayer() {
+        function deletePlayer() {
+            console.log("hello");
             PlayerService
                 .deletePlayer(vm.user._id)
                 .success(function(){

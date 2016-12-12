@@ -5,7 +5,7 @@
     <!-- FORM -->
     <div class="col-xs-12 col-sm-10">
     
-        <div ng-show="model.error" class="alert alert-danger" role="alert">
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
         {{model.error}}
     </div>
 
@@ -42,9 +42,9 @@
         <div class="row">
 
             <div class="input-group">
-                <input ng-model="currentMessage" type="text" class="form-control">
+                <input ng-model="model.currentMessage" type="text" class="form-control">
                 <span class="input-group-btn">
-                    <a ng-click="model.sendMessage(currentMessage)" class="btn btn-default" type="button">
+                    <a ng-click="model.sendMessage(model.currentMessage)" class="btn btn-default" type="button">
                         <span class="glyphicon glyphicon-triangle-right"></span>
                     </a>
                 </span>
@@ -56,13 +56,13 @@
                         <div ng-if="model.playerId==message.to" class="text-left">
                             {{message.message}}
                             <img ng-src="{{model.friend.avatar}}" class="col-xs-1"/>
-                            <div class="pull-right">
-                            Sent {{message.dateSent | date : 'MM d, yy - h:m a'}}
+                            <div class="pull-right" style="color: grey;">
+                            Sent: {{message.dateSent | date : 'MM d, yy - h:m a'}}
                             </div>
                         </div>
                         <div ng-if="model.friendId==message.to" class="text-right">
-                            <div class="pull-left">
-                            Sent {{message.dateSent | date : 'MM d, yy - h:m a'}}
+                            <div class="pull-left" style="color:grey;">
+                            Sent: {{message.dateSent | date : 'MM d, yy - h:m a'}}
                             </div>
                             {{message.message}}
                             <img ng-src="{{model.user.avatar}}" class="col-xs-1 pull-right"/>

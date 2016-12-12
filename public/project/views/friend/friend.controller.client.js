@@ -11,6 +11,7 @@
         vm.friendId = $routeParams["fid"];
         vm.addFriend = addFriend;
         vm.challengeToGame = challengeToGame;
+        vm.removeFriend = removeFriend;
         vm.page = {};
 
         function init(){
@@ -35,6 +36,24 @@
                 });
         }
         init();
+
+        function removeFriend(friendId){
+            for(var i =0; i < vm.user.friends.length; i++){
+                var friend = vm.user.friends[i];
+                if(friend._id == friendId){
+                    vm.user.friends.splice(i, 1);
+                }
+            }
+            PlayerService
+                .updatePlayer(vm.user)
+                .success(function(response){
+                    var url = "/player/" + vm.user._id + "/friends/" + friendId;
+                    $location.url()
+                })
+                .error(function(error){
+                    console.log(error);
+                });
+        }
 
         function addFriend(){
             if(!vm.user || !vm.friend){
@@ -142,6 +161,7 @@
         var vm = this;
         vm.update = update;
         vm.searchUsername = searchUsername;
+        vm.removeFriend = removeFriend;
 
         vm.userId = $routeParams["uid"];
 
@@ -156,6 +176,24 @@
                 });
         }
         init();
+
+        function removeFriend(friendId){
+            for(var i =0; i < vm.user.friends.length; i++){
+                var friend = vm.user.friends[i];
+                if(friend._id == friendId){
+                    vm.user.friends.splice(i, 1);
+                }
+            }
+            PlayerService
+                .updatePlayer(vm.user)
+                .success(function(response){
+                    var url = "/player/" + vm.user._id + "/friends/";
+                    $location.url()
+                })
+                .error(function(error){
+                    console.log(error);
+                });
+        }
 
         function searchUsername(username){
             PlayerService

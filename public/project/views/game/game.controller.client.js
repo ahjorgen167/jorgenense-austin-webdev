@@ -76,6 +76,7 @@
         vm.createGame = createGame;
         vm.searchGamesByUsername = searchGamesByUsername;
         vm.joinGame = joinGame;
+        vm.deleteGame = deleteGame;
 
 
         vm.playerId = $routeParams["pid"];
@@ -110,7 +111,7 @@
                                     PlayerService
                                         .updatePlayer(vm.user)
                                         .success(function(response){
-                                            var url = "/player/" + vm.playerId + "/game/" + game._id
+                                            var url = "/player/" + vm.playerId + "/game/" + game._id;
                                             $location.url(url);
                                         })
                                         .error(function(error){
@@ -132,6 +133,20 @@
                     return;
                 });
         }
+
+        function deleteGame(gameId){
+            GameService
+                .deleteGame(gameId)
+                .success(function(response){
+                    var url = "/player/" + vm.playerId + "/game/";
+                    $location.url(url);
+                })
+                .error(function(error){
+                    console.log(error);
+                    return;
+                });
+        }
+
 
         function searchGamesByUsername(username){
             PlayerService

@@ -5,12 +5,10 @@ module.exports = function() {
     var PlayerSchema = mongoose.Schema({
         username: {type: String, required: true, unique: true},
         password: String,
+        email: String,
+        name: String,
         avatar: {type: String, default: 'http://www.mellottbrothers.com/wp-content/uploads/2013/02/blank-profile-hi-400x380.png'},
         dateCreated: {type: Date, default: Date.now},
-        facebook: {
-            id:    String,
-            token: String
-        },
         games: [{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}],
         friends: [{type: mongoose.Schema.Types.ObjectId, ref: 'Player'}],
         admin: {type: Boolean, default: false}
